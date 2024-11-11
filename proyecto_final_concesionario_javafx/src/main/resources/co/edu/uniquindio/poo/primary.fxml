@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane id="pane_1" fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.PrimaryViewController">
+   <children>
+      <Label fx:id="lbl_1" layoutX="38.0" layoutY="576.0" text="Made by: Alejandro Hurtado" textFill="#e28743">
+         <font>
+            <Font name="Calibri Italic" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_2" layoutX="421.0" layoutY="85.0" text="Proyecto" textFill="#e28743">
+         <font>
+            <Font name="Calibri Bold" size="96.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_3" layoutX="397.0" layoutY="210.0" text="Concesionario" textFill="#e28743">
+         <font>
+            <Font size="65.0" />
+         </font></Label>
+      <Button fx:id="bt_1" layoutX="421.0" layoutY="373.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #39241B;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="Comenzar" textFill="#e28743">
+         <font>
+            <Font name="Calibri Bold" size="64.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
