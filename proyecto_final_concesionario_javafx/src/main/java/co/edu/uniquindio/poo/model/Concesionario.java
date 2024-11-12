@@ -1,4 +1,5 @@
 package co.edu.uniquindio.poo.model;
+
 import java.util.List;
 import java.util.LinkedList;
 
@@ -418,5 +419,7 @@ public class Concesionario implements IVerificarPersona{
             }
         }
         return accion;
+        System.out.println("Hola");
     }
+
 }
