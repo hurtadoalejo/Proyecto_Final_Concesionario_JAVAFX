@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
+import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
 import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
@@ -141,8 +142,8 @@ public class App extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("gestionAdministradores.fxml"));
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
-            GestionSedesViewController gestionSedesViewController = loader.getController();
-            gestionSedesViewController.setApp(this);
+            GestionAdministradoresViewController gestionAdministradoresViewController = loader.getController();
+            gestionAdministradoresViewController.setApp(this);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);

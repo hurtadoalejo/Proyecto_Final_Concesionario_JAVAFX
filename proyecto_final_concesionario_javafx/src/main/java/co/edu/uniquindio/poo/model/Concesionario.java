@@ -257,7 +257,7 @@ public class Concesionario implements IVerificarPersona{
      */
     public boolean verificarSedeVacia(Sede sede){
         boolean accion = false;
-        if (sede.getListaVehiculos().isEmpty() && sede.getListaEmpleados().isEmpty() && sede.getListaVentas().isEmpty() && sede.getListaAlquileres().isEmpty() && sede.getListaCompras().isEmpty()) {
+        if (sede.getListaVehiculos().isEmpty() && sede.getListaEmpleados().isEmpty() && sede.getListaVentas().isEmpty() && sede.getListaAlquileres().isEmpty() && sede.getListaCompras().isEmpty() && sede.getAdministrador() == null) {
             accion = true;
         }
         return accion;
@@ -325,19 +325,23 @@ public class Concesionario implements IVerificarPersona{
         boolean accion = false;
         for (Administrador administrador : listaAdministradores) {
             if (administrador.getIdentificacion().equals(identificacion) && administradorNuevo.getIdentificacion().equals(identificacion) && isAutenticado()){
-                if (administrador.getSede().equals(administradorNuevo.getSede())) {
-                    administrador.getSede().setAdministrador(administradorNuevo);
-                }
-                else{
-                    administrador.getSede().setAdministrador(null);
-                    administradorNuevo.getSede().setAdministrador(administradorNuevo);
-                }
                 administrador.setNombre(administradorNuevo.getNombre());
                 administrador.setCorreo(administradorNuevo.getCorreo());
                 administrador.setSalarioBase(administradorNuevo.getSalarioBase());
                 administrador.setUsuario(administradorNuevo.getUsuario());
                 administrador.setPassword(administradorNuevo.getPassword());
                 administrador.setRespuestaPregunta(administradorNuevo.getRespuestaPregunta());
+                if (administrador.getSede().equals(administradorNuevo.getSede())) {
+                    administrador.getSede().setAdministrador(administradorNuevo);
+                }
+                else{
+                    if (administradorNuevo.getSede().getAdministrador() == null) {
+                        administrador.getSede().setAdministrador(null);
+                        administrador.setSede(administradorNuevo.getSede());
+                        administrador.getSede().setAdministrador(administrador);
+                    }
+                }
+                accion = true;
             }
         }
         return accion;
@@ -391,4 +395,5 @@ public class Concesionario implements IVerificarPersona{
         }
         return accion;
     }
+
 }

@@ -294,7 +294,7 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         boolean accion = false;
         if (isAutenticado() && estadoEmpleado.equals(Estado_empleado.ACTIVO)) {
             for (Cliente cliente : concesionario.getListaClientes()) {
-                if (cliente.getIdentificacion().equals(cedula)) {
+                if (cliente.getIdentificacion().equals(cedula) && clienteNuevo.getIdentificacion().equals(cedula)) {
                     cliente.setNombre(clienteNuevo.getNombre());
                     cliente.setCorreo(clienteNuevo.getCorreo());
                     accion = true;

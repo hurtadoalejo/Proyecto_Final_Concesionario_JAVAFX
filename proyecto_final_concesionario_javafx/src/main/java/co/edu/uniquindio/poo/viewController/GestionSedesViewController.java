@@ -265,7 +265,6 @@ public class GestionSedesViewController {
      */
     private void limpiarSeleccion() {
         tbl_1.getSelectionModel().clearSelection();
-        txt_1.setDisable(false);
         limpiarCamposSedes();
     }
 

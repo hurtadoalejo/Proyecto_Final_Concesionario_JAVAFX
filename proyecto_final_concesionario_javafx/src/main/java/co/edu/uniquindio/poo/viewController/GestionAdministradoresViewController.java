@@ -7,7 +7,6 @@ import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.GestionAdministradoresController;
 import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Sede;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -25,7 +24,7 @@ public class GestionAdministradoresViewController {
 
     GestionAdministradoresController gestionAdministradoresController;
     ObservableList<Administrador> listaAdministradores = FXCollections.observableArrayList();
-    Administrador selecteAdministrador;
+    Administrador selectedAdministrador;
 
     @FXML
     private App app;
@@ -134,34 +133,69 @@ public class GestionAdministradoresViewController {
         this.app = app;
     }
 
+    /**
+     * Metodo para inicializar la interfaz de la gestion de sedes
+     */
     @FXML
     void onOpenGestionSedes() {
-
+        app.openGestionSedes();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del menu concesionario
+     */
     @FXML
     void onOpenConcesionario() {
-
+        app.openConcesionario();
     }
 
+    /**
+     * Metodo para manejar el evento de limpiar la seleccion actual
+     */
     @FXML
     void onLimpiar() {
         limpiarSeleccion();
     }
 
+    /**
+     * Metodo para manejar el evento de eliminar un administrador
+     */
     @FXML
     void onEliminarAdministrador() {
-
+        eliminarAdministrador();
     }
 
+    /**
+     * Metodo para manejar el evento de actualizar un administrador
+     */
     @FXML
     void onActualizarAdministrador() {
-
+        actualizarAdministrador();
     }
 
+    /**
+     * Metodo para manejar el evento de agregar un nuevo Administrador
+     */
     @FXML
     void onAgregarAdministrador() {
+        agregarAdministrador();
+    }
 
+    /**
+     * Metodo para mostrar la informacion del administrador
+     * @param administrador Administrador a mostrar
+     */
+    private void mostrarInformacionAdministrador(Administrador administrador){
+        if (administrador != null) {
+            txt_1.setText(administrador.getNombre());
+            txt_2.setText(administrador.getIdentificacion());
+            txt_3.setText(administrador.getCorreo());
+            txt_4.setText(String.valueOf(administrador.getSalarioBase()));
+            txt_5.setText(administrador.getUsuario());
+            txt_6.setText(String.valueOf(administrador.getPassword()));
+            txt_7.setText(administrador.getRespuestaPregunta());
+            cb_1.getSelectionModel().select(administrador.getSede());
+        }
     }
 
     /**
@@ -180,7 +214,8 @@ public class GestionAdministradoresViewController {
     private void agregarAdministrador(){
         if (verificarCasillasCorrecta() && verificarCasillasLlenas()) {
             Administrador administrador = builAdministrador();
-            if (gestionAdministradoresController.crearAdministrador(administrador) && gestionAdministradoresController.verificarSedeLibre(administrador.getSede())) {
+            if (gestionAdministradoresController.crearAdministrador(administrador)) {
+                System.out.println("Hola");
                 listaAdministradores.add(administrador);
                 limpiarCamposAdministradores();
             }
@@ -192,7 +227,7 @@ public class GestionAdministradoresViewController {
      */
     private void actualizarAdministrador(){
         if (verificarCasillasCorrecta() && verificarCasillasLlenas()) {
-            if (selecteAdministrador != null && gestionAdministradoresController.actualizarAdministrador(txt_2.getText(), builAdministrador())) {
+            if (selectedAdministrador != null && gestionAdministradoresController.actualizarAdministrador(selectedAdministrador.getIdentificacion(), builAdministrador())) {
                 tbl_1.refresh();
                 limpiarSeleccion();
                 limpiarCamposAdministradores();
@@ -205,7 +240,7 @@ public class GestionAdministradoresViewController {
      */
     private void eliminarAdministrador(){
         if (gestionAdministradoresController.eliminarAdministrador(txt_2.getText())) {
-            listaAdministradores.remove(selecteAdministrador);
+            listaAdministradores.remove(selectedAdministrador);
             limpiarCamposAdministradores();
             limpiarSeleccion();
         }
@@ -336,6 +371,7 @@ public class GestionAdministradoresViewController {
     void initialize() {
         gestionAdministradoresController = new GestionAdministradoresController(App.concesionario);
         cb_1.getItems().addAll(gestionAdministradoresController.obtenerListaSedes());
+        initView();
         assert lb_9 != null : "fx:id=\"lb_9\" was not injected: check your FXML file 'gestionAdministradores.fxml'.";
         assert cl_sedeCodigo != null : "fx:id=\"cl_sedeCodigo\" was not injected: check your FXML file 'gestionAdministradores.fxml'.";
         assert lb_3 != null : "fx:id=\"lb_3\" was not injected: check your FXML file 'gestionAdministradores.fxml'.";

@@ -217,6 +217,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
                 empleado.setSalarioBase(empleadoNuevo.getSalarioBase());
                 empleado.setUsuario(empleadoNuevo.getUsuario());
                 empleado.setPassword(empleadoNuevo.getPassword());
+                empleado.setRespuestaPregunta(empleadoNuevo.getRespuestaPregunta());
                 if (!verificarNegociosPendientesEmpleado(empleado)) {
                     empleado.setSede(empleadoNuevo.getSede());
                 }

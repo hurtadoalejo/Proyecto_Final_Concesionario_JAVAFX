@@ -60,12 +60,4 @@ public class GestionAdministradoresController {
         return concesionario.actualizarAdministrador(identificacion, administradorNuevo);
     }
 
-    /**
-     * Metodo para verificar si la sede tiene un administrador relacionado o no
-     * @param sede Sede que se busca verificar
-     * @return Booleano sobre si la sede esta libre o no
-     */
-    public boolean verificarSedeLibre(Sede sede){
-        return concesionario.verificarSedeLibre(sede);
-    }
 }

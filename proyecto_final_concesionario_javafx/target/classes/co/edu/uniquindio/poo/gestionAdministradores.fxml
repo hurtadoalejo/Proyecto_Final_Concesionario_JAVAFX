@@ -5,7 +5,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController">
    <children>
       <Label fx:id="lb_1" layoutX="350.0" layoutY="22.0" text="Gestión Administradores" textFill="#ffbc8c">
@@ -104,8 +103,8 @@
             <TableColumn fx:id="cl_nombre" prefWidth="224.0" text="Nombre" />
             <TableColumn fx:id="cl_identificacion" prefWidth="173.0" text="Identificacion" />
             <TableColumn fx:id="cl_sedeCodigo" prefWidth="149.0" text="Sede" />
-            <TableColumn fx:id="cl_usuario" prefWidth="155.0" text="Usuario" />
-            <TableColumn fx:id="cl_password" prefWidth="125.0" text="Contraseña" />
+            <TableColumn fx:id="cl_usuario" prefWidth="140.0" text="Usuario" />
+            <TableColumn fx:id="cl_password" prefWidth="137.0" text="Contraseña" />
          </columns>
       </TableView>
       <Button fx:id="bt_4" layoutX="979.0" layoutY="529.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Limpiar" textFill="#e28743">
