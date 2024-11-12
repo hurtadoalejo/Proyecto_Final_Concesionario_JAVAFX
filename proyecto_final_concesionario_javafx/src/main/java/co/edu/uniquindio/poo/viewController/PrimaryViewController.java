@@ -48,7 +48,7 @@ public class PrimaryViewController {
      */
     @FXML
     void onOpenMenu() {
-        System.out.println("Hola");
+        app.openMenu();
     }
 
     /**

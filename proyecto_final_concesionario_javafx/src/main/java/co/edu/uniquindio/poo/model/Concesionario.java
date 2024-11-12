@@ -161,11 +161,15 @@ public class Concesionario{
     /**
      * Metodo para agregar una sede a la lista de sedes del concesionario
      * @param sede Sede que se busca agregar a la lista de sedes del concesionario
+     * @return Booleano sobre si se pudo agregar o no la sede
      */
-    public void agregarSede(Sede sede){
-        if (!verificarSede(sede.getDireccion(), sede.getCiudad())) {
+    public boolean agregarSede(Sede sede){
+        boolean accion = false;
+        if (!verificarDireccionCiudad(sede.getDireccion(), sede.getCiudad()) && !verificarSede(sede.getCodigo())) {
             listaSedes.add(sede);
+            accion = true;
         }
+        return accion;
     }
     /**
      * Metodo para verificar si una direccion y ciudad son iguales al de una sede en la lista de sedes del concesionario
@@ -173,7 +177,7 @@ public class Concesionario{
      * @param ciudad Ciudad que se verificara
      * @return Boolean sobre si estos datos son o no iguales al de una sede en la lista de sedes del concesionario
      */
-    public boolean verificarSede(String direccion, Ciudad ciudad){
+    public boolean verificarDireccionCiudad(String direccion, Ciudad ciudad){
         boolean esRepetido = false;
         if (isAutenticado()) {
             for (Sede sede : listaSedes) {
@@ -185,6 +189,22 @@ public class Concesionario{
         }
         return esRepetido;
     }
+
+    /**
+     * Metodo para verificar si existe una sede en la lista de sedes del concesionario con el mismo codigo que uno administrado
+     * @param codigo Codigo administrado
+     * @return Booleano sobre si existe una sede con esa condicion o no
+     */
+    public boolean verificarSede(int codigo){
+        boolean accion = false;
+        for (Sede sede : listaSedes) {
+            if (sede.getCodigo() == codigo) {
+                accion = true;
+            }
+        }
+        return accion;
+    }
+
     /**
      * Metodo para actualizar los datos de una sede si corresponde a un codigo entregado
      * @param codigo Codigo de la sede a verificar
@@ -195,7 +215,8 @@ public class Concesionario{
         boolean accion = false;
         if (isAutenticado()) {
             for (Sede sede : listaSedes) {
-                if (sede.getCodigo() == codigo) {
+                if (sede.getCodigo() == codigo && actualizado.getCodigo() == codigo) {
+                    sede.setCodigo(actualizado.getCodigo());
                     sede.setDireccion(actualizado.getDireccion());
                     sede.setCiudad(actualizado.getCiudad());
                     accion = true;

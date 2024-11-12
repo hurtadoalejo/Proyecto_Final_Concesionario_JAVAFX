@@ -56,27 +56,27 @@ public class MenuViewController {
     }
 
     /**
-     * Metodo para inicializar la interfaz del concesionario
+     * Metodo para inicializar la interfaz de inicio de sesion del concesionario
      */
     @FXML
-    void onOpenConcesionario() {
-        app.openConcesionario();
+    void onOpenIngresarConcesionario() {
+        app.openIngresarConcesionario();
     }
 
     /**
-     * Metodo para inicializar la interfaz del administrador
+     * Metodo para inicializar la interfaz de inicio de sesion del administrador
      */
     @FXML
-    void onOpenAdministrador() {
-        app.openAdministrador();
+    void onOpenIngresarAdministrador() {
+        app.openIngresarAdministrador();
     }
 
     /**
-     * Metodo para inicializar la interfaz del empleado
+     * Metodo para inicializar la interfaz de inicio de sesion del empleado
      */
     @FXML
-    void onOpenEmpleado() {
-        app.openEmpleado();
+    void onOpenIngresarEmpleado() {
+        app.openIngresarEmpleado();
     }
 
     /**

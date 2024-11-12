@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController">
+   <children>
+      <Label fx:id="lb_1" layoutX="269.0" layoutY="40.0" text="Ingresa la contraseña para" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_2" layoutX="204.0" layoutY="116.0" text="entrar al menú de concesionario" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_3" layoutX="206.0" layoutY="277.0" text="Contraseña: " textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_2" layoutX="431.0" layoutY="529.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Volver al menú" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_1" layoutX="492.0" layoutY="430.0" mnemonicParsing="false" onAction="#manejarCodigo" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Ingresar" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txt_1" layoutX="520.0" layoutY="272.0" style="-fx-background-color: #39241B; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>

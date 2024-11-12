@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.ConcesionarioViewController">
+   <children>
+      <Button fx:id="bt_1" layoutX="329.0" layoutY="325.0" mnemonicParsing="false" onAction="#onOpenGestionSedes" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Gestión sedes" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Label fx:id="lb_1" layoutX="329.0" layoutY="61.0" text="Menú Concesionario" textFill="#ffbc8c">
+         <font>
+            <Font name="Verdana Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_2" layoutX="47.0" layoutY="192.0" text="Seleccione el apartado al que se quiere dirigir" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_2" layoutX="672.0" layoutY="325.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Menú" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_3" layoutX="329.0" layoutY="449.0" mnemonicParsing="false" onAction="#onOpenGestionAdministradores" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Gestión administradores" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
