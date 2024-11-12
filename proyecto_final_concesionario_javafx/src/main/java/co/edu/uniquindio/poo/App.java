@@ -103,7 +103,6 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             ConcesionarioViewController concesionarioViewController = loader.getController();
             concesionarioViewController.setApp(this);
-            concesionarioViewController.setConcesionario(concesionario);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -121,6 +120,26 @@ public class App extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("gestionSedes.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            GestionSedesViewController gestionSedesViewController = loader.getController();
+            gestionSedesViewController.setApp(this);
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar la interfaz de gestion de administradores
+     */
+    public void openGestionAdministradores() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("gestionAdministradores.fxml"));
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             GestionSedesViewController gestionSedesViewController = loader.getController();
             gestionSedesViewController.setApp(this);

@@ -164,7 +164,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
      */
     public boolean agregarEmpleado(Empleado empleado){
         boolean accion = false;
-        if (!verificarPersona(empleado.getIdentificacion()) && isAutenticado()) {
+        if (!verificarPersona(empleado.getIdentificacion()) && isAutenticado() && verificarAdministradorAncladoSede()) {
             empleado.setEstadoEmpleado(Estado_empleado.ACTIVO);
             concesionario.getListaEmpleados().add(empleado);
             sede.getListaEmpleados().add(empleado);
@@ -172,6 +172,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
         }
         return accion;
     }
+
     /**
      * Metodo para verificar si existe una persona con la misma identificacion administrada en la lista de empleados, administradores o clientes del concesionario
      * @param identificacion Identificacion a verificar
@@ -200,6 +201,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
         }
         return accion;
     }
+
     /**
      * Metodo para actualizar un empleado que coincida con un numero de cedula
      * @param cedula Cedula del empleado que se busca actualizar
@@ -209,7 +211,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
     public boolean actualizarEmpleado(String cedula, Empleado empleadoNuevo){
         boolean accion = false;
         for (Empleado empleado : concesionario.getListaEmpleados()) {
-            if (empleado.getIdentificacion().equals(cedula) && empleadoNuevo.getIdentificacion().equals(cedula) && isAutenticado()) {
+            if (empleado.getIdentificacion().equals(cedula) && empleadoNuevo.getIdentificacion().equals(cedula) && isAutenticado() && verificarAdministradorAncladoSede()) {
                 empleado.setNombre(empleadoNuevo.getNombre());
                 empleado.setCorreo(empleadoNuevo.getCorreo());
                 empleado.setSalarioBase(empleadoNuevo.getSalarioBase());
@@ -224,6 +226,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
         }
         return accion;
     }
+
     /**
      * Metodo para verificar si un empleado tiene negocios pendientes en su sede
      * @param empleado Empleado a verificar
@@ -243,6 +246,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
         }
         return accion;
     }
+
     /**
      * Metodo para eliminar un empleado de la lista de empleados de su sede y del concesionario
      * @param identificacion Identificacion del empleado a eliminar
@@ -250,7 +254,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
      */
     public boolean eliminarEmpleado(String identificacion){
         boolean accion = false;
-        if (isAutenticado()) {
+        if (isAutenticado() && verificarAdministradorAncladoSede()) {
             for (Empleado empleado : concesionario.getListaEmpleados()) {
                 if (empleado.getIdentificacion().equals(identificacion) && !verificarNegociosPendientesEmpleado(empleado)) {
                     concesionario.getListaEmpleados().remove(empleado);
@@ -276,6 +280,20 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
             setUsuario(nuevoUsuario);
             setPassword(nuevaPassword);
             accion = true;
+        }
+        return accion;
+    }
+
+    /**
+     * Metodo para verificar si el administrador si esta anclado a la sede que tiene asignada
+     * @return Booleano sobre si el administrador si esta anclado a la sede que tiene asignada o no
+     */
+    public boolean verificarAdministradorAncladoSede(){
+        boolean accion = false;
+        if (sede.getAdministrador() != null) {
+            if (sede.getAdministrador().getIdentificacion().equals(super.getIdentificacion())) {
+                accion = true;
+            }
         }
         return accion;
     }

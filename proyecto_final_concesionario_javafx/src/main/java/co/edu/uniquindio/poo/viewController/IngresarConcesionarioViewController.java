@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.controller.IngresarConcesionarioController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import javafx.scene.layout.Pane;
 import co.edu.uniquindio.poo.model.Concesionario;
 
 public class IngresarConcesionarioViewController {
+
+    IngresarConcesionarioController ingresarConcesionarioController;
 
     @FXML
     private App app;
@@ -87,9 +90,8 @@ public class IngresarConcesionarioViewController {
     private void manejarCodigo(){
         if (esEntero(txt_1.getText())) {
             int codigoIntroducido = Integer.parseInt(txt_1.getText());
-            concesionario.autenticar(codigoIntroducido);
-            if (concesionario.isAutenticado()) {
-                onOpenConcesionario();
+            if (ingresarConcesionarioController.autenticarCodigo(codigoIntroducido)) {
+                app.openConcesionario();
             }
         }
     }
@@ -102,16 +104,9 @@ public class IngresarConcesionarioViewController {
         app.openMenu();
     }
 
-    /**
-     * Metodo para inicializar la interfaz del concesionario
-     */
-    @FXML
-    void onOpenConcesionario() {
-        app.openConcesionario();
-    }
-
     @FXML
     void initialize() {
+        ingresarConcesionarioController = new IngresarConcesionarioController(App.concesionario);
         assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'ingresarConcesionario.fxml'.";
         assert lb_3 != null : "fx:id=\"lb_3\" was not injected: check your FXML file 'ingresarConcesionario.fxml'.";
         assert txt_1 != null : "fx:id=\"txt_1\" was not injected: check your FXML file 'ingresarConcesionario.fxml'.";

@@ -165,9 +165,11 @@ public class Concesionario implements IVerificarPersona{
      */
     public boolean agregarSede(Sede sede){
         boolean accion = false;
-        if (!verificarDireccionCiudad(sede.getDireccion(), sede.getCiudad()) && !verificarSede(sede.getCodigo())) {
-            listaSedes.add(sede);
-            accion = true;
+        if (isAutenticado()) {
+            if (!verificarDireccionCiudad(sede.getDireccion(), sede.getCiudad()) && !verificarSede(sede.getCodigo())) {
+                listaSedes.add(sede);
+                accion = true;
+            }
         }
         return accion;
     }
@@ -226,6 +228,7 @@ public class Concesionario implements IVerificarPersona{
         }
         return accion;
     }
+
     /**
      * Metodo para eliminar una sede de la lista de sedes del concesionario si no tiene nada dentro de ella
      * @param codigo Codigo de la sede a eliminar
@@ -246,6 +249,7 @@ public class Concesionario implements IVerificarPersona{
         }
         return accion;
     }
+
     /**
      * Metodo para verificar si una sede esta totalmente vacia
      * @param sede Sede a verificar
@@ -273,6 +277,7 @@ public class Concesionario implements IVerificarPersona{
             return false;
         }
     }
+
     /**
      * Metodo para cerrar la sesion del concesionario
      */
@@ -280,19 +285,46 @@ public class Concesionario implements IVerificarPersona{
         setAutenticado(false);
     }
 
+    /**
+     * Metodo para agregar el administrador a la lista de concesionarios de administradores
+     * @param administrador Administrador que se busca agregar
+     * @return Booleano sobre si se pudo agregar el administrador o no
+     */
     public boolean agregarAdministrador(Administrador administrador){
         boolean accion = false;
-        if (!verificarPersona(administrador.getIdentificacion())) {
-            listaAdministradores.add(administrador);
-            administrador.getSede().setAdministrador(administrador);
+        if (isAutenticado() && verificarSedeLibre(administrador.getSede())) {
+            if (!verificarPersona(administrador.getIdentificacion())) {
+                listaAdministradores.add(administrador);
+                administrador.getSede().setAdministrador(administrador);
+                accion = true;
+            }
+        }
+        return accion;
+    }
+
+    /**
+     * Metodo para verificar si una sede no tienen ningun administrador anclado
+     * @param sede Sede que se buca verificar
+     * @return Booleano sobre si la sede tiene un administrador anclado o no
+     */
+    public boolean verificarSedeLibre(Sede sede){
+        boolean accion = false;
+        if (sede.getAdministrador() == null) {
             accion = true;
         }
         return accion;
     }
+
+    /**
+     * Metodo para actualizar el administrador de una lista de administradores del concesionario
+     * @param identificacion Identificacion del administrador a actualizar
+     * @param administradorNuevo Administrador con los datos nuevos
+     * @return Booleano sobre si se pudo actualizar el administrador o no
+     */
     public boolean actualizarAdministrador(String identificacion, Administrador administradorNuevo){
         boolean accion = false;
         for (Administrador administrador : listaAdministradores) {
-            if (administrador.getIdentificacion().equals(identificacion)) {
+            if (administrador.getIdentificacion().equals(identificacion) && administradorNuevo.getIdentificacion().equals(identificacion) && isAutenticado()){
                 if (administrador.getSede().equals(administradorNuevo.getSede())) {
                     administrador.getSede().setAdministrador(administradorNuevo);
                 }
@@ -300,14 +332,37 @@ public class Concesionario implements IVerificarPersona{
                     administrador.getSede().setAdministrador(null);
                     administradorNuevo.getSede().setAdministrador(administradorNuevo);
                 }
+                administrador.setNombre(administradorNuevo.getNombre());
+                administrador.setCorreo(administradorNuevo.getCorreo());
+                administrador.setSalarioBase(administradorNuevo.getSalarioBase());
+                administrador.setUsuario(administradorNuevo.getUsuario());
+                administrador.setPassword(administradorNuevo.getPassword());
+                administrador.setRespuestaPregunta(administradorNuevo.getRespuestaPregunta());
             }
         }
         return accion;
     }
+
+    /**
+     * Metodo para eliminar un administrador de la lista de administradores del concesionario
+     * @param identificacion Identificacion del administrador a eliminar
+     * @return Booleano sobre si se pudo eliminar el administrador o no
+     */
     public boolean eliminarAdministrador(String identificacion){
         boolean accion = false;
+        if (isAutenticado()) {
+            for (Administrador administrador : listaAdministradores) {
+                if (administrador.getIdentificacion().equals(identificacion)) {
+                    listaAdministradores.remove(administrador);
+                    administrador.getSede().setAdministrador(null);
+                    accion = true;
+                    break;
+                }
+            }
+        }
         return accion;
     }
+
     /**
      * Metodo para verificar si existe una persona con la misma identificacion administrada en la lista de empleados, administradores o clientes del concesionario
      * @param identificacion Identificacion a verificar

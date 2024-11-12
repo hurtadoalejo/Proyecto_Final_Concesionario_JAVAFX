@@ -4,19 +4,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.controller.ConcesionarioController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import co.edu.uniquindio.poo.model.Concesionario;
 
 public class ConcesionarioViewController {
 
-    @FXML
-    private App app;
+    ConcesionarioController concesionarioController;
 
     @FXML
-    private Concesionario concesionario;
+    private App app;
 
     @FXML
     private ResourceBundle resources;
@@ -55,7 +54,7 @@ public class ConcesionarioViewController {
      */
     @FXML
     void onOpenMenu() {
-        concesionario.cerrarSesion();
+        concesionarioController.cerrarSesion();
         app.openMenu();
     }
 
@@ -75,17 +74,9 @@ public class ConcesionarioViewController {
         app.openGestionAdministradores();
     }
 
-    /**
-     * Metodo para establecer el concesionario para este controlador
-     * @param concesionario Concesionario a establecer
-     */
-    @SuppressWarnings("exports")
-    public void setConcesionario(Concesionario concesionario){
-        this.concesionario = concesionario;
-    }
-
     @FXML
     void initialize() {
+        concesionarioController = new ConcesionarioController(App.concesionario);
         assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'concesionario.fxml'.";
         assert bt_3 != null : "fx:id=\"bt_3\" was not injected: check your FXML file 'concesionario.fxml'.";
         assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'concesionario.fxml'.";

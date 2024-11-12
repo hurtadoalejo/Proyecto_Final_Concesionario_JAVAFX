@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController">
+   <children>
+      <Label fx:id="lb_1" layoutX="350.0" layoutY="22.0" text="Gestión Administradores" textFill="#ffbc8c">
+         <font>
+            <Font name="Verdana Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_6" layoutX="473.0" layoutY="561.0" mnemonicParsing="false" onAction="#onOpenGestionSedes" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Gestión Sedes" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_5" layoutX="174.0" layoutY="561.0" mnemonicParsing="false" onAction="#onOpenConcesionario" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Menú Concesionario" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="22.0" />
+         </font>
+      </Button>
+      <Label fx:id="lb_3" layoutX="47.0" layoutY="160.0" text="Identificacion:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_1" layoutX="247.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="290.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lb_2" layoutX="121.0" layoutY="110.0" text="Nombre:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_4" layoutX="137.0" layoutY="208.0" text="Correo:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_2" layoutX="247.0" layoutY="156.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="290.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txt_3" layoutX="247.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="0.0" prefWidth="290.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lb_6" layoutX="717.0" layoutY="110.0" text="Salario base:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_4" layoutX="900.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lb_5" layoutX="162.0" layoutY="256.0" text="Sede:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_7" layoutX="774.0" layoutY="160.0" text="Usuario:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cb_1" layoutX="245.0" layoutY="253.0" prefHeight="39.0" prefWidth="290.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px; -fx-background-color: #FFFFFF; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;" />
+      <TextField fx:id="txt_5" layoutX="900.0" layoutY="156.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lb_8" layoutX="729.0" layoutY="208.0" text="Contraseña:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_6" layoutX="900.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lb_9" layoutX="566.0" layoutY="256.0" text="Nombre canción favorita:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_7" layoutX="900.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="253.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="16.0" />
+         </font>
+      </TextField>
+      <TableView fx:id="tbl_1" layoutX="40.0" layoutY="332.0" prefHeight="200.0" prefWidth="829.0" style=" -fx-border-color: #e28743; -fx-border-width: 2; -fx-font-size: 18px;">
+         <columns>
+            <TableColumn fx:id="cl_nombre" prefWidth="224.0" text="Nombre" />
+            <TableColumn fx:id="cl_identificacion" prefWidth="173.0" text="Identificacion" />
+            <TableColumn fx:id="cl_sedeCodigo" prefWidth="149.0" text="Sede" />
+            <TableColumn fx:id="cl_usuario" prefWidth="155.0" text="Usuario" />
+            <TableColumn fx:id="cl_password" prefWidth="125.0" text="Contraseña" />
+         </columns>
+      </TableView>
+      <Button fx:id="bt_4" layoutX="979.0" layoutY="529.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Limpiar" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_3" layoutX="901.0" layoutY="465.0" mnemonicParsing="false" onAction="#onEliminarAdministrador" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Eliminar Administrador" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_2" layoutX="893.0" layoutY="398.0" mnemonicParsing="false" onAction="#onActualizarAdministrador" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Actualizar Administrador" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_1" layoutX="902.0" layoutY="332.0" mnemonicParsing="false" onAction="#onAgregarAdministrador" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Agregar Administrador" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
