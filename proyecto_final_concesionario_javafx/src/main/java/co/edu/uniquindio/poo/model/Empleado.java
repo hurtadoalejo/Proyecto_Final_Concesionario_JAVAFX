@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 
-public class Empleado extends Persona{
+public class Empleado extends Persona implements ICredencialAcceso, IVerificarPersona{
     private Concesionario concesionario;
     private double salarioBase;
     private Estado_empleado estadoEmpleado;
@@ -207,6 +207,7 @@ public class Empleado extends Persona{
      * @param passwordDada Contraseña a verificar
      * @return Booleano sobre si la autenticacion fue lograda o no
      */
+    @Override
     public boolean autenticar(String usuarioDado, int passwordDada){
         if (usuario.equals(usuarioDado) && password == passwordDada) {
             setAutenticado(true);
@@ -216,9 +217,11 @@ public class Empleado extends Persona{
             return false;
         }
     }
+
     /**
      * Metodo para cerrar la sesion de un empleado
      */
+    @Override
     public void cerrarSesion(){
         setAutenticado(false);
     }
@@ -258,6 +261,7 @@ public class Empleado extends Persona{
      * @param identificacion Identificacion a verificar
      * @return Booleano sobre si existe una persona con esta condicion o no
      */
+    @Override
     public boolean verificarPersona(String identificacion){
         boolean accion = false;
         for (Empleado empleado : concesionario.getListaEmpleados()) {
@@ -658,6 +662,7 @@ public class Empleado extends Persona{
      * @param nuevaPassword Nueva contraseña
      * @return Booleano sobre si se pudo recuperar las credenciales o no
      */
+    @Override
     public boolean recuperarCredenciales(String respuesta, String nuevoUsuario, int nuevaPassword){
         boolean accion = false;
         if (respuesta.equals(respuestaPregunta)) {

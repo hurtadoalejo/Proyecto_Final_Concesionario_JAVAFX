@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.model;
 
-public class Administrador extends Persona{
+public class Administrador extends Persona implements ICredencialAcceso, IVerificarPersona{
     private double salarioBase;
     private Sede sede;
     private String usuario;
@@ -138,6 +138,7 @@ public class Administrador extends Persona{
      * @param passwordDada Contraseña a verificar
      * @return Booleano sobre si la autenticacion fue lograda o no
      */
+    @Override
     public boolean autenticar(String usuarioDado, int passwordDada){
         if (usuario.equals(usuarioDado) && password == passwordDada) {
             setAutenticado(true);
@@ -147,9 +148,11 @@ public class Administrador extends Persona{
             return false;
         }
     }
+
     /**
      * Metodo para cerrar la sesion de un empleado
      */
+    @Override
     public void cerrarSesion(){
         setAutenticado(false);
     }
@@ -174,6 +177,7 @@ public class Administrador extends Persona{
      * @param identificacion Identificacion a verificar
      * @return Booleano sobre si existe una persona con esta condicion o no
      */
+    @Override
     public boolean verificarPersona(String identificacion){
         boolean accion = false;
         for (Empleado empleado : concesionario.getListaEmpleados()) {
@@ -265,6 +269,7 @@ public class Administrador extends Persona{
      * @param nuevaPassword Nueva contraseña
      * @return Booleano sobre si se pudo recuperar las credenciales o no
      */
+    @Override
     public boolean recuperarCredenciales(String respuesta, String nuevoUsuario, int nuevaPassword){
         boolean accion = false;
         if (respuesta.equals(respuestaPregunta)) {

@@ -2,7 +2,7 @@ package co.edu.uniquindio.poo.model;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Concesionario{
+public class Concesionario implements IVerificarPersona{
     private String nombre;
     private double gananciasNetas;
     private List<Sede> listaSedes;
@@ -171,6 +171,7 @@ public class Concesionario{
         }
         return accion;
     }
+    
     /**
      * Metodo para verificar si una direccion y ciudad son iguales al de una sede en la lista de sedes del concesionario
      * @param direccion Direccion que se verificara
@@ -216,7 +217,6 @@ public class Concesionario{
         if (isAutenticado()) {
             for (Sede sede : listaSedes) {
                 if (sede.getCodigo() == codigo && actualizado.getCodigo() == codigo) {
-                    sede.setCodigo(actualizado.getCodigo());
                     sede.setDireccion(actualizado.getDireccion());
                     sede.setCiudad(actualizado.getCiudad());
                     accion = true;
@@ -313,6 +313,7 @@ public class Concesionario{
      * @param identificacion Identificacion a verificar
      * @return Booleano sobre si existe una persona con esta condicion o no
      */
+    @Override
     public boolean verificarPersona(String identificacion){
         boolean accion = false;
         for (Empleado empleado : listaEmpleados) {
