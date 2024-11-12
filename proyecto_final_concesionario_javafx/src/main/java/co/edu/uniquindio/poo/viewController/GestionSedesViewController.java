@@ -223,6 +223,7 @@ public class GestionSedesViewController {
     private void mostrarInformacionSede(Sede sede){
         if (sede != null) {
             txt_1.setText(String.valueOf(sede.getCodigo()));
+            txt_1.setDisable(true);
             txt_2.setText(sede.getDireccion());
             cb_1.getSelectionModel().select(sede.getCiudad());
         }
@@ -265,6 +266,7 @@ public class GestionSedesViewController {
      */
     private void limpiarSeleccion() {
         tbl_1.getSelectionModel().clearSelection();
+        txt_1.setDisable(false);
         limpiarCamposSedes();
     }
 

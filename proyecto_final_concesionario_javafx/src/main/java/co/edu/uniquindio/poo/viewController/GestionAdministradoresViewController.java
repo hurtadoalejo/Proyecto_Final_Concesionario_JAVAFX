@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -189,6 +190,7 @@ public class GestionAdministradoresViewController {
         if (administrador != null) {
             txt_1.setText(administrador.getNombre());
             txt_2.setText(administrador.getIdentificacion());
+            txt_2.setDisable(true);
             txt_3.setText(administrador.getCorreo());
             txt_4.setText(String.valueOf(administrador.getSalarioBase()));
             txt_5.setText(administrador.getUsuario());
@@ -215,7 +217,6 @@ public class GestionAdministradoresViewController {
         if (verificarCasillasCorrecta() && verificarCasillasLlenas()) {
             Administrador administrador = builAdministrador();
             if (gestionAdministradoresController.crearAdministrador(administrador)) {
-                System.out.println("Hola");
                 listaAdministradores.add(administrador);
                 limpiarCamposAdministradores();
             }
@@ -367,10 +368,40 @@ public class GestionAdministradoresViewController {
         }
     }
 
+    /**
+     * Metodo para configurar la visualizacion del combobox, mostrando el codigo de las sedes
+     */
+    public void configurarComboBox(){
+        cb_1.setCellFactory(param -> new ListCell<Sede>() {
+            @Override
+            protected void updateItem(Sede sede, boolean empty) {
+                super.updateItem(sede, empty);
+                if (empty || sede == null) {
+                    setText(null);
+                } else {
+                    setText(String.valueOf(sede.getCodigo()));
+                }
+            }
+        });
+    
+        cb_1.setButtonCell(new ListCell<Sede>() {
+            @Override
+            protected void updateItem(Sede sede, boolean empty) {
+                super.updateItem(sede, empty);
+                if (empty || sede == null) {
+                    setText(null);
+                } else {
+                    setText(String.valueOf(sede.getCodigo()));
+                }
+            }
+        });
+    }
+
     @FXML
     void initialize() {
         gestionAdministradoresController = new GestionAdministradoresController(App.concesionario);
         cb_1.getItems().addAll(gestionAdministradoresController.obtenerListaSedes());
+        configurarComboBox();
         initView();
         assert lb_9 != null : "fx:id=\"lb_9\" was not injected: check your FXML file 'gestionAdministradores.fxml'.";
         assert cl_sedeCodigo != null : "fx:id=\"cl_sedeCodigo\" was not injected: check your FXML file 'gestionAdministradores.fxml'.";

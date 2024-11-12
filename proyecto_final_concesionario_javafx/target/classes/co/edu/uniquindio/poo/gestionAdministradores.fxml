@@ -12,12 +12,12 @@
             <Font name="Verdana Bold" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="bt_6" layoutX="473.0" layoutY="561.0" mnemonicParsing="false" onAction="#onOpenGestionSedes" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Gestión Sedes" textFill="#e28743">
+      <Button fx:id="bt_6" layoutX="216.0" layoutY="562.0" mnemonicParsing="false" onAction="#onOpenGestionSedes" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Gestión Sedes" textFill="#e28743">
          <font>
             <Font name="Verdana" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="bt_5" layoutX="174.0" layoutY="561.0" mnemonicParsing="false" onAction="#onOpenConcesionario" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Menú Concesionario" textFill="#e28743">
+      <Button fx:id="bt_5" layoutX="437.0" layoutY="562.0" mnemonicParsing="false" onAction="#onOpenConcesionario" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Menú Concesionario" textFill="#e28743">
          <font>
             <Font name="Verdana" size="22.0" />
          </font>
