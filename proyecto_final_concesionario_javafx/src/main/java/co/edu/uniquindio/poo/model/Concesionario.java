@@ -419,7 +419,6 @@ public class Concesionario implements IVerificarPersona{
             }
         }
         return accion;
-        System.out.println("Hola");
     }
 
 }
