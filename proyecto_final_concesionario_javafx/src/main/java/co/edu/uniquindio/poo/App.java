@@ -145,6 +145,7 @@ public class App extends Application {
             GestionAdministradoresViewController gestionAdministradoresViewController = loader.getController();
             gestionAdministradoresViewController.setApp(this);
 
+            
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();

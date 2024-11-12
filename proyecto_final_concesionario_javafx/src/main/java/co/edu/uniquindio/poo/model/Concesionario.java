@@ -292,7 +292,7 @@ public class Concesionario implements IVerificarPersona{
      */
     public boolean agregarAdministrador(Administrador administrador){
         boolean accion = false;
-        if (isAutenticado() && verificarSedeLibre(administrador.getSede())) {
+        if (isAutenticado() && verificarSedeLibre(administrador.getSede()) && !verificarUsuario(administrador.getUsuario())) {
             if (!verificarPersona(administrador.getIdentificacion())) {
                 listaAdministradores.add(administrador);
                 administrador.getSede().setAdministrador(administrador);
@@ -328,7 +328,6 @@ public class Concesionario implements IVerificarPersona{
                 administrador.setNombre(administradorNuevo.getNombre());
                 administrador.setCorreo(administradorNuevo.getCorreo());
                 administrador.setSalarioBase(administradorNuevo.getSalarioBase());
-                administrador.setUsuario(administradorNuevo.getUsuario());
                 administrador.setPassword(administradorNuevo.getPassword());
                 administrador.setRespuestaPregunta(administradorNuevo.getRespuestaPregunta());
                 if (administrador.getSede().equals(administradorNuevo.getSede())) {
@@ -340,6 +339,9 @@ public class Concesionario implements IVerificarPersona{
                         administrador.setSede(administradorNuevo.getSede());
                         administrador.getSede().setAdministrador(administrador);
                     }
+                }
+                if (!administrador.getUsuario().equals(administradorNuevo.getUsuario()) && !verificarUsuario(administradorNuevo.getUsuario())) {
+                    administrador.setUsuario(administradorNuevo.getUsuario());
                 }
                 accion = true;
             }
@@ -396,4 +398,25 @@ public class Concesionario implements IVerificarPersona{
         return accion;
     }
 
+    /**
+     * Metodo para verificar si ya existe un empleado o administrador con un usuario administrado
+     * @param usuario Usuario a verificar
+     * @return Booleano sobre si existe un empleado o administrador con esta condicion
+     */
+    public boolean verificarUsuario(String usuario){
+        boolean accion = false;
+        for (Administrador administrador : listaAdministradores) {
+            if (administrador.getUsuario().equals(usuario)) {
+                accion = true;
+                return accion;
+            }
+        }
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado.getUsuario().equals(usuario)) {
+                accion = true;
+                return accion;
+            }
+        }
+        return accion;
+    }
 }
