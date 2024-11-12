@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.model;
 import java.util.List;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 public class Compra {
@@ -10,6 +11,7 @@ public class Compra {
     private List<Detalle_compra> listaDetallesCompra;
     private Sede sede;
     private boolean concretada;
+    private LocalDate fechaCompra;
 
     /**
      * Metodo constructor de la clase compra
@@ -17,8 +19,9 @@ public class Compra {
      * @param empleado Empleado de la compra a crear
      * @param cliente Cliente de la compra a crear
      * @param sede Sede de la compra a crear
+     * @param fechaCompra Fecha de la compra a crear
      */
-    public Compra(int codigo, Empleado empleado, Cliente cliente, Sede sede) {
+    public Compra(int codigo, Empleado empleado, Cliente cliente, Sede sede, LocalDate fechaCompra) {
         this.codigo = codigo;
         this.empleado = empleado;
         this.cliente = cliente;
@@ -26,6 +29,7 @@ public class Compra {
         this.totalCompra = 0;
         this.listaDetallesCompra = new LinkedList<>();
         this.concretada = false;
+        this.fechaCompra = fechaCompra;
     }
 
     /**
@@ -77,6 +81,13 @@ public class Compra {
     public boolean isConcretada() {
         return concretada;
     }
+    /**
+     * Metodo para obtener la fecha de compra de la compra
+     * @return Fecha de compra de la compra
+     */
+    public LocalDate getFechaCompra() {
+        return fechaCompra;
+    }
 
     /**
      * Metodo para modificar el codigo de la compra
@@ -126,6 +137,13 @@ public class Compra {
      */
     public void setConcretada(boolean concretada) {
         this.concretada = concretada;
+    }
+    /**
+     * Metodo para modificar la fecha de compra de la compra
+     * @param fechaCompra Nueva fecha de compra de la compra
+     */
+    public void setFechaCompra(LocalDate fechaCompra) {
+        this.fechaCompra = fechaCompra;
     }
 
     /**
