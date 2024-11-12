@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txt_2" layoutX="529.0" layoutY="345.0" style="-fx-background-color: #39241B; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </TextField>
+      <Button fx:id="bt_1" layoutX="72.0" layoutY="517.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Volver al menú" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Label fx:id="lb_4" layoutX="210.0" layoutY="350.0" text="Contraseña: " textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_1" layoutX="126.0" layoutY="48.0" text="Ingresa al usuario y la contraseña para" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_2" layoutX="149.0" layoutY="127.0" text="acceder al menú de un administrador" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_3" layoutX="301.0" layoutY="247.0" text="Usuario:" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_1" layoutX="529.0" layoutY="241.0" style="-fx-background-color: #39241B; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </TextField>
+      <Button fx:id="bt_2" layoutX="425.0" layoutY="517.0" mnemonicParsing="false" onAction="#onOpenMenuAdmin" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Ingresar" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_3" layoutX="657.0" layoutY="517.0" mnemonicParsing="false" onAction="#onOpenRecuperarCredencialesAdmin" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Recuperar credenciales" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
