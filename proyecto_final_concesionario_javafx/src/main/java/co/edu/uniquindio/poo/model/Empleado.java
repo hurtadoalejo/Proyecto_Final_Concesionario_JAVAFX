@@ -666,9 +666,17 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
     public boolean recuperarCredenciales(String respuesta, String nuevoUsuario, int nuevaPassword){
         boolean accion = false;
         if (respuesta.equals(respuestaPregunta)) {
-            setUsuario(nuevoUsuario);
-            setPassword(nuevaPassword);
-            accion = true;
+            if (!nuevoUsuario.equals(usuario)) {
+                if (!concesionario.verificarUsuario(nuevoUsuario)) {
+                    setUsuario(nuevoUsuario);
+                    setPassword(nuevaPassword);
+                    return accion = true;
+                }  
+            }
+            else if (nuevoUsuario.equals(usuario)) {
+                setPassword(nuevaPassword);
+                return accion = true;
+            } 
         }
         return accion;
     }
