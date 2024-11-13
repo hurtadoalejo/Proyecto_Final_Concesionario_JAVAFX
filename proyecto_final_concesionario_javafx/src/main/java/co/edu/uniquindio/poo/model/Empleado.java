@@ -426,6 +426,7 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
     public boolean agregarVenta(Venta venta){
         boolean accion = false;
         if (isAutenticado() && !verificarVenta(venta.getCodigo()) && venta.getVehiculo().getEstadoDisponibilidad().equals(Estado_disponibilidad.DISPONIBLE) && venta.getSede().equals(sede) && venta.getVehiculo().getTipoUso().equals(Tipo_uso.VENTA) && venta.getEmpleado().getIdentificacion().equals(super.getIdentificacion()) && verificarCliente(venta.getCliente().getIdentificacion()) && estadoEmpleado.equals(Estado_empleado.ACTIVO)) {
+            listaVentas.add(venta);
             sede.getListaVentas().add(venta);
             venta.getVehiculo().setEstadoDisponibilidad(Estado_disponibilidad.NO_DISPONIBLE);
             sede.aumentarDineroGenerado(venta.getTotalVenta());

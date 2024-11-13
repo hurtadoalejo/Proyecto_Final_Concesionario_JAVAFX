@@ -112,7 +112,7 @@ public class LoginAdminViewController {
             int codigoIntroducido = Integer.parseInt(txt_2.getText());
             Administrador administrador = loginAdminController.obtenerUsuarioAdmin(txt_1.getText(), codigoIntroducido);
             if (administrador != null) {
-                System.out.println("Aqui se inicializa el apartado de administrador");
+                app.openMenuAdmin(administrador);
             }
         }
     }

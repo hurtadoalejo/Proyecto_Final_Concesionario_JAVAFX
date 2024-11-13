@@ -345,6 +345,7 @@ public class Concesionario implements IVerificarPersona{
                     administrador.setUsuario(administradorNuevo.getUsuario());
                 }
                 accion = true;
+                break;
             }
         }
         return accion;

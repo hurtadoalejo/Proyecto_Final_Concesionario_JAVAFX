@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.model.Administrador;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +15,9 @@ public class MenuViewController {
 
     @FXML
     private App app;
+
+    @FXML
+    private Administrador administrador;
 
     @FXML
     private ResourceBundle resources;
@@ -45,6 +49,15 @@ public class MenuViewController {
      */
     public void setApp(App app) {
         this.app = app;
+    }
+
+    /**
+     * Metodo para establecer el administrador para este controlador
+     * @param administrador Administrador a establecer
+     */
+    @SuppressWarnings("exports")
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
     }
 
     /**

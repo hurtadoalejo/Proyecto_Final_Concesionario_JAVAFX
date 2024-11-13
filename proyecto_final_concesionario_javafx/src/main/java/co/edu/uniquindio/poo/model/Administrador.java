@@ -164,7 +164,7 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
      */
     public boolean agregarEmpleado(Empleado empleado){
         boolean accion = false;
-        if (!verificarPersona(empleado.getIdentificacion()) && isAutenticado() && verificarAdministradorAncladoSede()) {
+        if (!verificarPersona(empleado.getIdentificacion()) && isAutenticado() && verificarAdministradorAncladoSede() && !concesionario.verificarUsuario(empleado.getUsuario())) {
             empleado.setEstadoEmpleado(Estado_empleado.ACTIVO);
             concesionario.getListaEmpleados().add(empleado);
             sede.getListaEmpleados().add(empleado);
@@ -215,11 +215,13 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
                 empleado.setNombre(empleadoNuevo.getNombre());
                 empleado.setCorreo(empleadoNuevo.getCorreo());
                 empleado.setSalarioBase(empleadoNuevo.getSalarioBase());
-                empleado.setUsuario(empleadoNuevo.getUsuario());
                 empleado.setPassword(empleadoNuevo.getPassword());
                 empleado.setRespuestaPregunta(empleadoNuevo.getRespuestaPregunta());
                 if (!verificarNegociosPendientesEmpleado(empleado)) {
                     empleado.setSede(empleadoNuevo.getSede());
+                }
+                if (!empleadoNuevo.getUsuario().equals(usuario) && !concesionario.verificarUsuario(empleadoNuevo.getUsuario())) {
+                    empleado.setUsuario(empleadoNuevo.getUsuario());
                 }
                 accion = true;
                 break;
@@ -306,4 +308,5 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
         }
         return accion;
     }
+
 }

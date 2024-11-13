@@ -6,12 +6,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
+import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
 import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
+import co.edu.uniquindio.poo.viewController.MenuAdminViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
 import co.edu.uniquindio.poo.viewController.PrimaryViewController;
 import co.edu.uniquindio.poo.viewController.RecuperarCredencialesAdminViewController;
@@ -188,6 +191,54 @@ public class App extends Application {
             RecuperarCredencialesAdminViewController recuperarCredencialesAdminViewController = loader.getController();
             recuperarCredencialesAdminViewController.setApp(this);
 
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar el menu del administrador
+     */
+    @SuppressWarnings("exports")
+    public void openMenuAdmin(Administrador administrador) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("menuAdmin.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            MenuAdminViewController menuAdminViewController = loader.getController();
+            menuAdminViewController.setApp(this);
+            menuAdminViewController.setAdministrador(administrador);
+            menuAdminViewController.inicializarAdministrador(administrador);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar la interfaz de gestion de empleados
+     */
+    @SuppressWarnings("exports")
+    public void openGestionEmpleados(Administrador administrador) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("gestionEmpleados.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            GestionEmpleadosViewController gestionEmpleadosViewController = loader.getController();
+            gestionEmpleadosViewController.setApp(this);
+            gestionEmpleadosViewController.setAdministrador(administrador);
+            gestionEmpleadosViewController.inicializarAdministrador(administrador);
+            
             
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
