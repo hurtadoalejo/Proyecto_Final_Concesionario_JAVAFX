@@ -421,4 +421,19 @@ public class Concesionario implements IVerificarPersona{
         return accion;
     }
 
+    /**
+     * Metodo para obtener un administrador que tenga el mismo usuario y codigo que uno entregado
+     * @param usuario Usuario a verificar
+     * @param codigo Codigo a verificar
+     * @return Administrador o null dependiendo si se encontró uno con esa condicion o no
+     */
+    public Administrador obtenerUsuarioAdministrador(String usuario, int codigo){
+        for (Administrador administradorTemporal : listaAdministradores) {
+            if (administradorTemporal.getUsuario().equals(usuario) && administradorTemporal.getPassword() == codigo) {
+                administradorTemporal.autenticar(usuario, codigo);
+                return administradorTemporal;
+            }
+        }
+        return null;
+    }
 }

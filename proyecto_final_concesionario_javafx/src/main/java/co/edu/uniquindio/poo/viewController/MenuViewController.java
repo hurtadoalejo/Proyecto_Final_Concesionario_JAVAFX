@@ -68,7 +68,7 @@ public class MenuViewController {
      */
     @FXML
     void onOpenIngresarAdministrador() {
-        app.openIngresarAdministrador();
+        app.openLoginAdmin();
     }
 
     /**

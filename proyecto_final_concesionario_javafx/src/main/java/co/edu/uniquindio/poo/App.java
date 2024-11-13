@@ -11,6 +11,7 @@ import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
 import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
+import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
 import co.edu.uniquindio.poo.viewController.PrimaryViewController;
 
@@ -83,7 +84,6 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             IngresarConcesionarioViewController ingresarConcesionarioViewController = loader.getController();
             ingresarConcesionarioViewController.setApp(this);
-            ingresarConcesionarioViewController.setConcesionario(concesionario);
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -144,6 +144,24 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             GestionAdministradoresViewController gestionAdministradoresViewController = loader.getController();
             gestionAdministradoresViewController.setApp(this);
+
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public void openLoginAdmin() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("loginAdmin.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            LoginAdminViewController loginAdminViewController = loader.getController();
+            loginAdminViewController.setApp(this);
 
             
             Scene scene = new Scene(rootLayout);

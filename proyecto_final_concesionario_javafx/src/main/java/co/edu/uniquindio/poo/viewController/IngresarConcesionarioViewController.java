@@ -58,15 +58,6 @@ public class IngresarConcesionarioViewController {
     }
 
     /**
-     * Metodo para establecer el concesionario para este controlador
-     * @param concesionario Concesionario a establecer
-     */
-    @SuppressWarnings("exports")
-    public void setConcesionario(Concesionario concesionario){
-        this.concesionario = concesionario;
-    }
-
-    /**
      * Metodo para saber si un String es un dato de tipo int
      * @param texto String a verificar
      * @return Booleano sobre si el String es int o no
