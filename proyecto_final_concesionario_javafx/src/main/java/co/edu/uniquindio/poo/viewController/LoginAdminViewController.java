@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.LoginAdminController;
 import co.edu.uniquindio.poo.model.Administrador;
-import co.edu.uniquindio.poo.model.Concesionario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -85,7 +84,7 @@ public class LoginAdminViewController {
      */
     @FXML
     void onOpenRecuperarCredenciales() {
-        
+        app.openRecuperarCredencialesAdmin();
     }
 
     /**
@@ -105,16 +104,22 @@ public class LoginAdminViewController {
         }
     }
 
+    /**
+     * Metodo para autenticar un administrador
+     */
     private void autenticarUsuarioAdmin(){
         if (!txt_1.getText().isEmpty() && esEntero(txt_2.getText())) {
             int codigoIntroducido = Integer.parseInt(txt_2.getText());
-            Administrador administrador = loginAdminController.autenticarAdmin(txt_1.getText(), codigoIntroducido);
+            Administrador administrador = loginAdminController.obtenerUsuarioAdmin(txt_1.getText(), codigoIntroducido);
             if (administrador != null) {
-                System.out.println("Hola");
+                System.out.println("Aqui se inicializa el apartado de administrador");
             }
         }
     }
 
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado, ademas de asignar su debido controlador
+     */
     @FXML
     void initialize() {
         loginAdminController = new LoginAdminController(App.concesionario);

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.RecuperarCredencialesAdminViewController">
+   <children>
+      <Label fx:id="lb_1" layoutX="107.0" layoutY="38.0" text="Ingrese la cedula del usuario, su canción" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_2" layoutX="185.0" layoutY="116.0" text="favorita y sus nuevas credenciales" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_1" layoutX="222.0" layoutY="226.0" prefHeight="62.0" prefWidth="243.0" style="-fx-background-color: #39241B; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lb_3" layoutX="54.0" layoutY="231.0" text="Cedula:" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_2" layoutX="518.0" layoutY="525.0" mnemonicParsing="false" onAction="#onOpenRecuperarCredenciales" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Cambiar credenciales" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_1" layoutX="243.0" layoutY="525.0" mnemonicParsing="false" onAction="#onOpenMenuLogin" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Menú login" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <Label fx:id="lb_4" layoutX="496.0" layoutY="232.0" text="Cancion favorita:" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_5" layoutX="267.0" layoutY="330.0" text="Nuevo usuario:" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_6" layoutX="193.0" layoutY="413.0" text="Nueva contraseña:" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="40.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_3" layoutX="594.0" layoutY="325.0" prefHeight="62.0" prefWidth="267.0" style="-fx-background-color: #39241B; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txt_2" layoutX="854.0" layoutY="226.0" prefHeight="62.0" prefWidth="267.0" style="-fx-background-color: #39241B; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txt_4" layoutX="594.0" layoutY="408.0" prefHeight="62.0" prefWidth="267.0" style="-fx-background-color: #39241B; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </TextField>
+   </children>
+</Pane>

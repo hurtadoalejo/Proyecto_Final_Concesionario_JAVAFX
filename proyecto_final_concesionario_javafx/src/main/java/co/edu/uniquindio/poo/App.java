@@ -14,6 +14,7 @@ import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
 import co.edu.uniquindio.poo.viewController.PrimaryViewController;
+import co.edu.uniquindio.poo.viewController.RecuperarCredencialesAdminViewController;
 
 /**
  * JavaFX App
@@ -155,6 +156,9 @@ public class App extends Application {
         }
     }
 
+    /**
+     * Metodo para inicializar la interfaz de iniciar sesion del administrador
+     */
     public void openLoginAdmin() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -162,6 +166,27 @@ public class App extends Application {
             javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
             LoginAdminViewController loginAdminViewController = loader.getController();
             loginAdminViewController.setApp(this);
+
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar la interfaz de recuperar credenciales del administrador
+     */
+    public void openRecuperarCredencialesAdmin() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("recuperarCredencialesAdmin.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            RecuperarCredencialesAdminViewController recuperarCredencialesAdminViewController = loader.getController();
+            recuperarCredencialesAdminViewController.setApp(this);
 
             
             Scene scene = new Scene(rootLayout);

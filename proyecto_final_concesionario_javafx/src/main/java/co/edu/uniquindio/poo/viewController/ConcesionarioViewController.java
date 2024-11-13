@@ -74,6 +74,9 @@ public class ConcesionarioViewController {
         app.openGestionAdministradores();
     }
 
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado
+     */
     @FXML
     void initialize() {
         concesionarioController = new ConcesionarioController(App.concesionario);
@@ -86,4 +89,3 @@ public class ConcesionarioViewController {
 
     }
 }
-

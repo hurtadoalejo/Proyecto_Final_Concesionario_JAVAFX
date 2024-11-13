@@ -397,6 +397,9 @@ public class GestionAdministradoresViewController {
         });
     }
 
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado, ademas de asignar su debido controlador, configurar el combobox e inicializar la vista
+     */
     @FXML
     void initialize() {
         gestionAdministradoresController = new GestionAdministradoresController(App.concesionario);

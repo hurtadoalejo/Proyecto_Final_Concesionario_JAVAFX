@@ -20,7 +20,7 @@ public class LoginAdminController {
      * @param codigo Codigo entregado
      * @return Administrador si cumple la condicion o null
      */
-    public Administrador autenticarAdmin(String usuario, int codigo){
+    public Administrador obtenerUsuarioAdmin(String usuario, int codigo){
         Administrador administrador;
         administrador = concesionario.obtenerUsuarioAdministrador(usuario, codigo);
         return administrador;

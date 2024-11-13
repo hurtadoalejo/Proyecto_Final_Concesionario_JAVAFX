@@ -436,4 +436,37 @@ public class Concesionario implements IVerificarPersona{
         }
         return null;
     }
+
+    /**
+     * Metodo para obtener un administrador por la cedula entregada
+     * @param cedula Cedula entregada
+     * @return Administrador que cumple con esta condicion o null
+     */
+    public Administrador obtenerAdministradorPorCedula(String cedula){
+        for (Administrador administrador : listaAdministradores) {
+            if (administrador.getIdentificacion().equals(cedula)) {
+                return administrador;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Metodo para cambiar las credenciales de un administrador
+     * @param cedula Cedula del administrador
+     * @param respuesta Respuesta de la pregunta de seguridad del administrador
+     * @param usuario Nuevo usuario del administrador
+     * @param password Nueva contraseña del administrador
+     * @return Booleano sobre si se pudo o no cambiar las credenciales del administrador
+     */
+    public boolean cambiarCredencialesAdmin(String cedula, String respuesta, String usuario, int password){
+        boolean accion = false;
+        Administrador administrador = obtenerAdministradorPorCedula(cedula);
+        if (administrador != null) {
+            if (administrador.recuperarCredenciales(respuesta, usuario, password)) {
+                accion = true;
+            }   
+        }
+        return accion;
+    }
 }

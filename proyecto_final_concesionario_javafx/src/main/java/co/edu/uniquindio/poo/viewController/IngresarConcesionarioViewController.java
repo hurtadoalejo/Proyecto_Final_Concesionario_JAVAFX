@@ -95,6 +95,9 @@ public class IngresarConcesionarioViewController {
         app.openMenu();
     }
 
+    /**
+     * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado, ademas de asignar su debido controlador
+     */
     @FXML
     void initialize() {
         ingresarConcesionarioController = new IngresarConcesionarioController(App.concesionario);
