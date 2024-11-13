@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo.model;
 
+import java.time.LocalDate;
+
 public class Administrador extends Persona implements ICredencialAcceso, IVerificarPersona{
     private double salarioBase;
     private Sede sede;
@@ -309,4 +311,60 @@ public class Administrador extends Persona implements ICredencialAcceso, IVerifi
         return accion;
     }
 
+    /**
+     * Metodo para agregar un reporte a la lista de reportes de la sede
+     * @param reporte Reporte que se busca agregar
+     * @return Booleano sobre si se pudo agregar el reporte o no
+     */
+    public boolean agregarReporte(Reporte reporte){
+        boolean accion = false;
+        if (verificarFechasReporte(reporte.getFechaInicio(), reporte.getFechaFin())) {
+            if (!verificarReporte(reporte.getCodigo()) && isAutenticado()) {
+                sede.getListaReportes().add(reporte);
+                accion = true;
+            }
+        }
+        return accion;
+    }
+
+    /**
+     * Metodo para verificar si hay algun reporte en la sede con el mismo codigo que uno administrado
+     * @param codigo Codigo a verificar
+     * @return Booleano sobre si existe un reporte con esta condicion o no
+     */
+    public boolean verificarReporte(int codigo){
+        boolean accion = false;
+        for (Reporte reporte : sede.getListaReportes()) {
+            if (reporte.getCodigo() == codigo) {
+                accion = true;
+            }
+        }
+        return accion;
+    }
+
+    public boolean verificarFechasReporte(LocalDate fechaInicio, LocalDate fechaFin){
+        boolean accion = true;
+        if (fechaInicio.isAfter(fechaFin)) {
+            accion = false;
+        }
+        return accion;
+    }
+
+    /**
+     * Metodo para eliminar un reporte de la lista de reportes de la sede
+     * @param codigo Codigo del reporte a eliminar
+     * @return Booleano sobre si se pudo eliminar el reporte o no
+     */
+    public boolean eliminarReporte(int codigo){
+        boolean accion = false;
+        if (isAutenticado()) {
+            for (Reporte reporte : sede.getListaReportes()) {
+                if (reporte.getCodigo() == codigo) {
+                    sede.getListaReportes().remove(reporte);
+                    accion = true;
+                }
+            } 
+        }
+        return accion;
+    }
 }

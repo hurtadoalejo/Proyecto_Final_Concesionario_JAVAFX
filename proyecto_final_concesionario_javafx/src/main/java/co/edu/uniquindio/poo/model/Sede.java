@@ -15,6 +15,7 @@ public class Sede {
     private List<Venta> listaVentas;
     private List<Compra> listaCompras;
     private List<Alquiler> listaAlquileres;
+    private List<Reporte> listaReportes;
     private Administrador administrador;
     
     /**
@@ -35,6 +36,7 @@ public class Sede {
         this.listaVentas = new LinkedList<>();
         this.listaCompras = new LinkedList<>();
         this.listaAlquileres = new LinkedList<>();
+        this.listaReportes = new LinkedList<>();
         this.administrador = null;
     }
 
@@ -122,6 +124,13 @@ public class Sede {
     public Administrador getAdministrador() {
         return administrador;
     }
+    /**
+     * Metodo para obtener la lista de reportes de la sede
+     * @return Lista de reportes de la sede
+     */
+    public List<Reporte> getListaReportes() {
+        return listaReportes;
+    }
 
     /**
      * Metodo para modificar el codigo de la sede
@@ -144,7 +153,6 @@ public class Sede {
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
-    
     /**
      * Metodo para modificar el dinero generado de la sede
      * @param dineroGenerado Nuevo dinero generado de la sede
@@ -207,6 +215,13 @@ public class Sede {
      */
     public void setAdministrador(Administrador administrador) {
         this.administrador = administrador;
+    }
+    /**
+     * Metodo para modificar la lista de reportes de la sede
+     * @param listaReportes Nueva lista de reportes de la sede
+     */
+    public void setListaReportes(List<Reporte> listaReportes) {
+        this.listaReportes = listaReportes;
     }
 
     /**

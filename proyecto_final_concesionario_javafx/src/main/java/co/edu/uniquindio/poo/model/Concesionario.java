@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 public class Concesionario implements IVerificarPersona{
     private String nombre;
-    private double gananciasNetas;
     private List<Sede> listaSedes;
     private List<Empleado> listaEmpleados; 
     private List<Administrador> listaAdministradores;
@@ -21,7 +20,6 @@ public class Concesionario implements IVerificarPersona{
      */
     public Concesionario(String nombre, int password) {
         this.nombre = nombre;
-        this.gananciasNetas = 0;
         this.listaSedes = new LinkedList<>();
         this.listaEmpleados = new LinkedList<>();
         this.listaAdministradores = new LinkedList<>();
@@ -51,13 +49,6 @@ public class Concesionario implements IVerificarPersona{
      */
     public boolean isAutenticado() {
         return autenticado;
-    }
-    /**
-     * Metodo para obtener las ganancias netas del concesionario
-     * @return Ganacias netas del concesionario
-     */
-    public double getGananciasNetas() {
-        return gananciasNetas;
     }
     /**
      * Metodo para obtener la lista de sedes del concesionario
@@ -115,13 +106,6 @@ public class Concesionario implements IVerificarPersona{
      */
     public void setAutenticado(boolean autenticado) {
         this.autenticado = autenticado;
-    }
-    /**
-     * Metodo para modificar las ganancias netas del concesionario
-     * @param gananciasNetas Nuevas ganacias netas del concesionario
-     */
-    public void setGananciasNetas(double gananciasNetas) {
-        this.gananciasNetas = gananciasNetas;
     }
     /**
      * Metodo para modificar la lista de sedes del concesionario
@@ -345,7 +329,6 @@ public class Concesionario implements IVerificarPersona{
                     administrador.setUsuario(administradorNuevo.getUsuario());
                 }
                 accion = true;
-                break;
             }
         }
         return accion;

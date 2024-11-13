@@ -428,9 +428,10 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         if (isAutenticado() && !verificarVenta(venta.getCodigo()) && venta.getVehiculo().getEstadoDisponibilidad().equals(Estado_disponibilidad.DISPONIBLE) && venta.getSede().equals(sede) && venta.getVehiculo().getTipoUso().equals(Tipo_uso.VENTA) && venta.getEmpleado().getIdentificacion().equals(super.getIdentificacion()) && verificarCliente(venta.getCliente().getIdentificacion()) && estadoEmpleado.equals(Estado_empleado.ACTIVO)) {
             listaVentas.add(venta);
             sede.getListaVentas().add(venta);
-            venta.getVehiculo().setEstadoDisponibilidad(Estado_disponibilidad.NO_DISPONIBLE);
             sede.aumentarDineroGenerado(venta.getTotalVenta());
             sede.setDineroGanadoNeto(sede.calcularDineroGanadoNeto());
+            sede.getListaVehiculos().remove(venta.getVehiculo());
+            concesionario.getListaVehiculos().remove(venta.getVehiculo());
             accion = true;
         }
         return accion;
@@ -489,6 +490,7 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         }
         return accion;
     }
+
     /**
      * Metodo para verificar si hay un alquiler con el mismo codigo que uno administrado
      * @param codigo Codigo a verificar
@@ -543,12 +545,13 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
             for (Alquiler alquiler : listaAlquileres) {
                 if (alquiler.getCodigo() == codigo && alquiler.getEmpleado().getIdentificacion().equals(super.getIdentificacion()) && alquiler.getEstadoAlquiler().equals(Estado_alquiler.PENDIENTE) && estadoEmpleado.equals(Estado_empleado.ACTIVO)) {
                     LocalDate fechaAlquiler = alquiler.getFechaAlquiler();
-                    if (fechaEntrega.isAfter(fechaAlquiler)) {
+                    if (fechaEntrega.isAfter(fechaAlquiler) || fechaEntrega.isEqual(fechaAlquiler)) {
                         int diasPrestamo = (int) ChronoUnit.DAYS.between(fechaAlquiler, fechaEntrega);
                         double totalPrestamo = diasPrestamo*alquiler.getPrecioPorDia();
                         alquiler.setTotalPrestamo(totalPrestamo);
                         alquiler.getVehiculo().setEstadoDisponibilidad(Estado_disponibilidad.DISPONIBLE);
                         alquiler.setEstadoAlquiler(Estado_alquiler.PAGADO);
+                        alquiler.setFechaEntregaAlquiler(fechaEntrega);
                         sede.aumentarDineroGenerado(totalPrestamo);
                         sede.setDineroGanadoNeto(sede.calcularDineroGanadoNeto());
                         accion = true;
@@ -648,10 +651,11 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
                     concesionario.getListaVehiculos().add(vehiculo);
                     accion = true;
                 }
+                habilitarVehiculosCompra(compraTemporal.getListaDetallesCompra());
+                sede.aumentarDineroGastado(compraTemporal.getTotalCompra());
+                sede.setDineroGanadoNeto(sede.calcularDineroGanadoNeto());
+                break;
             }
-            habilitarVehiculosCompra(compraTemporal.getListaDetallesCompra());
-            sede.aumentarDineroGastado(compraTemporal.getTotalCompra());
-            sede.setDineroGanadoNeto(sede.calcularDineroGanadoNeto());
         }
         return accion;
     }
