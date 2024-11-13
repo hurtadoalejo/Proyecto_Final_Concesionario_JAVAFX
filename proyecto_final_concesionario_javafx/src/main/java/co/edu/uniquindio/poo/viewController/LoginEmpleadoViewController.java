@@ -4,17 +4,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
-import co.edu.uniquindio.poo.controller.LoginAdminController;
-import co.edu.uniquindio.poo.model.Administrador;
+import co.edu.uniquindio.poo.controller.LoginEmpleadoController;
+import co.edu.uniquindio.poo.model.Empleado;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class LoginAdminViewController {
+public class LoginEmpleadoViewController {
 
-    LoginAdminController loginAdminController;
+    LoginEmpleadoController loginEmpleadoController;
 
     @FXML
     private App app;
@@ -72,19 +72,19 @@ public class LoginAdminViewController {
     }
 
     /**
-     * Metodo para inicializar la interfaz del login del administrador
+     * Metodo para inicializar la interfaz del login del empleado
      */
     @FXML
-    void onOpenAdministrador() {
-        autenticarUsuarioAdmin();
+    void onOpenEmpleado() {
+        autenticarUsuarioEmpleado();
     }
 
     /**
-     * Metodo para inicializar la interfaz de recuperar credenciales del administrador
+     * Metodo para inicializar la interfaz de recuperar credenciales del empleado
      */
     @FXML
     void onOpenRecuperarCredenciales() {
-        app.openRecuperarCredencialesAdmin();
+        app.openRecuperarCredencialesEmpleado();
     }
 
     /**
@@ -105,14 +105,14 @@ public class LoginAdminViewController {
     }
 
     /**
-     * Metodo para autenticar un administrador
+     * Metodo para autenticar un empleado
      */
-    private void autenticarUsuarioAdmin(){
+    private void autenticarUsuarioEmpleado(){
         if (!txt_1.getText().isEmpty() && esEntero(txt_2.getText())) {
             int codigoIntroducido = Integer.parseInt(txt_2.getText());
-            Administrador administrador = loginAdminController.obtenerUsuarioAdmin(txt_1.getText(), codigoIntroducido);
-            if (administrador != null) {
-                app.openMenuAdmin(administrador);
+            Empleado empleado = loginEmpleadoController.obtenerUsuarioEmpleado(txt_1.getText(), codigoIntroducido);
+            if (empleado != null) {
+                System.out.println("Holi");
             }
         }
     }
@@ -122,17 +122,17 @@ public class LoginAdminViewController {
      */
     @FXML
     void initialize() {
-        loginAdminController = new LoginAdminController(App.concesionario);
-        assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert lb_3 != null : "fx:id=\"lb_3\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert txt_1 != null : "fx:id=\"txt_1\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert bt_3 != null : "fx:id=\"bt_3\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert txt_2 != null : "fx:id=\"txt_2\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert lb_4 != null : "fx:id=\"lb_4\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert lb_1 != null : "fx:id=\"lb_1\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert lb_2 != null : "fx:id=\"lb_2\" was not injected: check your FXML file 'loginAdmin.fxml'.";
-        assert bt_2 != null : "fx:id=\"bt_2\" was not injected: check your FXML file 'loginAdmin.fxml'.";
+        loginEmpleadoController = new LoginEmpleadoController(App.concesionario);
+        assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert lb_3 != null : "fx:id=\"lb_3\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert txt_1 != null : "fx:id=\"txt_1\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert bt_3 != null : "fx:id=\"bt_3\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert txt_2 != null : "fx:id=\"txt_2\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert lb_4 != null : "fx:id=\"lb_4\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert lb_1 != null : "fx:id=\"lb_1\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert lb_2 != null : "fx:id=\"lb_2\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
+        assert bt_2 != null : "fx:id=\"bt_2\" was not injected: check your FXML file 'loginEmpleado.fxml'.";
 
     }
 }

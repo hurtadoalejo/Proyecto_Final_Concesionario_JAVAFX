@@ -8,16 +8,19 @@ import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Empleado;
 import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
 import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
 import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
+import co.edu.uniquindio.poo.viewController.LoginEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.MenuAdminViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
 import co.edu.uniquindio.poo.viewController.PrimaryViewController;
 import co.edu.uniquindio.poo.viewController.RecuperarCredencialesAdminViewController;
+import co.edu.uniquindio.poo.viewController.RecuperarCredencialesEmpleadoViewController;
 
 /**
  * JavaFX App
@@ -238,6 +241,74 @@ public class App extends Application {
             gestionEmpleadosViewController.setApp(this);
             gestionEmpleadosViewController.setAdministrador(administrador);
             gestionEmpleadosViewController.inicializarAdministrador(administrador);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    //AQUI FALTA EL DE OPEN REPORTES
+
+    /**
+     * Metodo para inicializar la interfaz de iniciar sesion del empleado
+     */
+    public void openLoginEmpleado() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("loginEmpleado.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            LoginEmpleadoViewController loginEmpleadoViewController = loader.getController();
+            loginEmpleadoViewController.setApp(this);
+
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar la interfaz de recuperar credenciales del empleado
+     */
+    public void openRecuperarCredencialesEmpleado() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("recuperarCredencialesEmpleado.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            RecuperarCredencialesEmpleadoViewController recuperarCredencialesEmpleadoViewController = loader.getController();
+            recuperarCredencialesEmpleadoViewController.setApp(this);
+
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar el menu del empleado
+     */
+    @SuppressWarnings("exports")
+    public void openMenuEmpleado(Empleado empleado) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("menuEmpleado.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            MenuEmpleadoViewController menuEmpleadoViewController = loader.getController();
+            menuEmpleadoViewController.setApp(this);
+            menuEmpleadoViewController.setEmpleado(empleado);
+            menuEmpleadoViewController.inicializarEmpleado(empleado);
             
             
             Scene scene = new Scene(rootLayout);

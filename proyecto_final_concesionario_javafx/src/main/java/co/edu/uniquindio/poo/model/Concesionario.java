@@ -453,4 +453,53 @@ public class Concesionario implements IVerificarPersona{
         }
         return accion;
     }
+
+    /**
+     * Metodo para obtener un administrador que tenga el mismo usuario y codigo que uno entregado
+     * @param usuario Usuario a verificar
+     * @param codigo Codigo a verificar
+     * @return Administrador o null dependiendo si se encontró uno con esa condicion o no
+     */
+    public Empleado obtenerUsuarioEmpleado(String usuario, int codigo){
+        for (Empleado empleadoTemporal : listaEmpleados) {
+            if (empleadoTemporal.getUsuario().equals(usuario) && empleadoTemporal.getPassword() == codigo) {
+                empleadoTemporal.autenticar(usuario, codigo);
+                return empleadoTemporal;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Metodo para obtener un empleado por la cedula entregada
+     * @param cedula Cedula entregada
+     * @return Empleado que cumple con esta condicion o null
+     */
+    public Empleado obtenerEmpleadoPorCedula(String cedula){
+        for (Empleado empleado : listaEmpleados) {
+            if (empleado.getIdentificacion().equals(cedula)) {
+                return empleado;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Metodo para cambiar las credenciales de un empleado
+     * @param cedula Cedula del empleado
+     * @param respuesta Respuesta de la pregunta de seguridad del empleado
+     * @param usuario Nuevo usuario del empleado
+     * @param password Nueva contraseña del empleado
+     * @return Booleano sobre si se pudo o no cambiar las credenciales del empleado
+     */
+    public boolean cambiarCredencialesEmpleado(String cedula, String respuesta, String usuario, int password){
+        boolean accion = false;
+        Empleado empleado = obtenerEmpleadoPorCedula(cedula);
+        if (empleado != null) {
+            if (empleado.recuperarCredenciales(respuesta, usuario, password)) {
+                accion = true;
+            }   
+        }
+        return accion;
+    }
 }

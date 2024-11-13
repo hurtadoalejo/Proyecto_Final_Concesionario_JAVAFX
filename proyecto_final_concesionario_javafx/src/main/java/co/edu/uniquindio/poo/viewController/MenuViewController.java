@@ -89,7 +89,7 @@ public class MenuViewController {
      */
     @FXML
     void onOpenIngresarEmpleado() {
-        app.openIngresarEmpleado();
+        app.openLoginEmpleado();
     }
 
     /**
