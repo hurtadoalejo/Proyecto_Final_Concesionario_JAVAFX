@@ -393,30 +393,6 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         }
         return accion;
     }
-    /**
-     * Metodo para cambiar la sede de un vehiculo de la lista de vehiculos de la sede del empleado
-     * @param codigo Codigo de la nueva sede del vehiculo
-     * @param placa Placa del vehiculo que se busca cambiar de sede
-     * @return Booleano sobre si se pudo cambiar de sede el vehiculo o no
-     */
-    public boolean cambiarSedeVehiculo(int codigo, String placa){
-        boolean accion = false;
-        if (isAutenticado() && codigo != sede.getCodigo() && estadoEmpleado.equals(Estado_empleado.ACTIVO)) {
-            for (Sede sedeCambiar : concesionario.getListaSedes()) {
-                if (sedeCambiar.getCodigo() == codigo) {
-                    for (Vehiculo vehiculo : sede.getListaVehiculos()) {
-                        if (vehiculo.getPlaca().equals(placa) && vehiculo.getEstadoDisponibilidad().equals(Estado_disponibilidad.DISPONIBLE)) {
-                            sedeCambiar.getListaVehiculos().add(vehiculo);
-                            sede.getListaVehiculos().remove(vehiculo);
-                            accion = true;
-                            break;
-                        }
-                    }
-                }
-            }   
-        }
-        return accion;
-    }
 
     /**
      * Metodo para agregar una venta a la lista de ventas de la sede del empleado

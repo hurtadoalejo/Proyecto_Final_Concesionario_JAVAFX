@@ -11,6 +11,7 @@ import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.model.Empleado;
 import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
+import co.edu.uniquindio.poo.viewController.GestionClienteViewController;
 import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
 import co.edu.uniquindio.poo.viewController.GestionReportesViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
@@ -18,6 +19,7 @@ import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
 import co.edu.uniquindio.poo.viewController.LoginEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.MenuAdminViewController;
+import co.edu.uniquindio.poo.viewController.MenuEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.MenuViewController;
 import co.edu.uniquindio.poo.viewController.PrimaryViewController;
 import co.edu.uniquindio.poo.viewController.RecuperarCredencialesAdminViewController;
@@ -332,6 +334,30 @@ public class App extends Application {
             menuEmpleadoViewController.setApp(this);
             menuEmpleadoViewController.setEmpleado(empleado);
             menuEmpleadoViewController.inicializarEmpleado(empleado);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar el menu de gestion de clientes
+     */
+    @SuppressWarnings("exports")
+    public void openGestionClientes(Empleado empleado) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("gestionClientes.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            GestionClienteViewController gestionClienteViewController = loader.getController();
+            gestionClienteViewController.setApp(this);
+            gestionClienteViewController.setEmpleado(empleado);
+            gestionClienteViewController.inicializarEmpleado(empleado);
             
             
             Scene scene = new Scene(rootLayout);

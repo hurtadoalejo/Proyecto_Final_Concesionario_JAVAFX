@@ -112,7 +112,7 @@ public class LoginEmpleadoViewController {
             int codigoIntroducido = Integer.parseInt(txt_2.getText());
             Empleado empleado = loginEmpleadoController.obtenerUsuarioEmpleado(txt_1.getText(), codigoIntroducido);
             if (empleado != null) {
-                System.out.println("Holi");
+                app.openMenuEmpleado(empleado);
             }
         }
     }
