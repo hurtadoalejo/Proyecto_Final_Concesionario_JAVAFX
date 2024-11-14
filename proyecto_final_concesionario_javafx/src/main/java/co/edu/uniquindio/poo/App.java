@@ -12,6 +12,7 @@ import co.edu.uniquindio.poo.model.Empleado;
 import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
 import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
+import co.edu.uniquindio.poo.viewController.GestionReportesViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
 import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
@@ -252,7 +253,29 @@ public class App extends Application {
         }
     }
 
-    //AQUI FALTA EL DE OPEN REPORTES
+    /**
+     * Metodo para inicializar la interfaz de gestion de reportes
+     */
+    @SuppressWarnings("exports")
+    public void openGestionReportes(Administrador administrador) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("gestionReportes.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            GestionReportesViewController gestionReportesViewController = loader.getController();
+            gestionReportesViewController.setApp(this);
+            gestionReportesViewController.setAdministrador(administrador);
+            gestionReportesViewController.inicializarController(administrador);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Metodo para inicializar la interfaz de iniciar sesion del empleado

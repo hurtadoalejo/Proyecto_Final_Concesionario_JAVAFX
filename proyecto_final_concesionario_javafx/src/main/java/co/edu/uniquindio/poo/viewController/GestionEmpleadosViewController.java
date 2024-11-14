@@ -151,7 +151,7 @@ public class GestionEmpleadosViewController {
      */
     @FXML
     void onOpenGestionReportes() {
-        System.out.println("Holi");
+        app.openGestionReportes(administrador);
     }
 
     /**

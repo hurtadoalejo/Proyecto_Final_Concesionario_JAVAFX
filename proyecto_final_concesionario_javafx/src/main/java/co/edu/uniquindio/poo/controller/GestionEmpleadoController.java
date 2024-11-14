@@ -30,8 +30,8 @@ public class GestionEmpleadoController {
     }
 
     /**
-     * Metodo para obtener la lista de empleados del concesionario
-     * @return Coleccion de empleados del concesionario
+     * Metodo para obtener la lista de empleados de la sede del administrador
+     * @return Coleccion de empleados de la sede del administrador
      */
     public Collection<Empleado> obtenerListaEmpleados(){
         return administrador.getSede().getListaEmpleados();

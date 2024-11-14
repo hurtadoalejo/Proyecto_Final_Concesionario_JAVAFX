@@ -76,7 +76,7 @@ public class MenuAdminViewController {
      */
     @FXML
     void onOpenGestionReportes() {
-        System.out.println("Hola");
+        app.openGestionReportes(administrador);
     }
 
     /**
