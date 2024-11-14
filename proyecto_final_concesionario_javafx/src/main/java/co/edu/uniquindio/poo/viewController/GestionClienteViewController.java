@@ -5,11 +5,8 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.GestionClienteController;
-import co.edu.uniquindio.poo.controller.GestionEmpleadoController;
-import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Empleado;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

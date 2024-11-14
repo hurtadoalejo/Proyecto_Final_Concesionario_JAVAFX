@@ -370,6 +370,30 @@ public class App extends Application {
     }
 
     /**
+     * Metodo para inicializar el menu de gestion de vehiculos
+     */
+    @SuppressWarnings("exports")
+    public void openGestionVehiculos(Empleado empleado) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("gestionVehiculos.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            GestionVehiculoViewController gestionVehiculoViewController = loader.getController();
+            gestionVehiculoViewController.setApp(this);
+            gestionVehiculoViewController.setEmpleado(empleado);
+            gestionVehiculoViewController.inicializarEmpleado(empleado);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Metodo principal que inicia la aplicacion
      * @param args Argumentos de la linea de comandos que recibe el programa
      */
