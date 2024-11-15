@@ -18,7 +18,7 @@ public class Camion extends Vehiculo_diesel{
      * @param tipoTransmision Tipo de transmision del camion a crear
      * @param tipoUso Tipo de uso del camion a crear
      * @param tieneAireAcondicionado Booleano sobre si el camion a crear tiene aire acondicionado o no
-     * @param tieneCamaraReversa Booleano sobre si el camion a crear tiene camara de reversa o no
+     * @param tieneFrenosAire Booleano sobre si el camion a crear tiene frenos de aire o no
      * @param tieneABS Booleano sobre si el camion a crear tiene ABS o no
      * @param numEjes Numero de ejes del camion a crear
      * @param capacidadCajaCarga Capacidad de la caja de carga del camion a crear
