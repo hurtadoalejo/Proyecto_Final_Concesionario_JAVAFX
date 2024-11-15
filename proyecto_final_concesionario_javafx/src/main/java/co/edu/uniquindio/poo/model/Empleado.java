@@ -333,6 +333,7 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         if (isAutenticado() && !verificarVehiculo(vehiculo.getPlaca()) && vehiculo.getSede().equals(sede) && estadoEmpleado.equals(Estado_empleado.ACTIVO)) {
             concesionario.getListaVehiculos().add(vehiculo);
             sede.getListaVehiculos().add(vehiculo);
+            accion = true;
         }
         return accion;
     }

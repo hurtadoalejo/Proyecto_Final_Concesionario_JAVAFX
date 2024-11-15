@@ -4,14 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
-import co.edu.uniquindio.poo.controller.GestionClienteController;
 import co.edu.uniquindio.poo.controller.GestionVehiculoController;
 import co.edu.uniquindio.poo.model.Bus;
 import co.edu.uniquindio.poo.model.Camion;
 import co.edu.uniquindio.poo.model.Camioneta;
 import co.edu.uniquindio.poo.model.Deportivo;
 import co.edu.uniquindio.poo.model.Empleado;
-import co.edu.uniquindio.poo.model.Estado_disponibilidad;
 import co.edu.uniquindio.poo.model.Estado_vehiculo;
 import co.edu.uniquindio.poo.model.Motocicleta;
 import co.edu.uniquindio.poo.model.Pick_up;
@@ -21,11 +19,9 @@ import co.edu.uniquindio.poo.model.Tipo_uso;
 import co.edu.uniquindio.poo.model.Van;
 import co.edu.uniquindio.poo.model.Vehiculo;
 import co.edu.uniquindio.poo.model.Sede;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -304,6 +300,12 @@ public class GestionVehiculoViewController {
     @SuppressWarnings("exports")
     public void inicializarEmpleado(Empleado empleado) {
         gestionVehiculoController = new GestionVehiculoController(empleado, App.concesionario);
+        cb_estado.getItems().addAll(Estado_vehiculo.values());
+        cb_uso.getItems().addAll(Tipo_uso.values());
+        cb_transmision.getItems().addAll(Tipo_transmision.values());
+        cb_vehiculo.getItems().addAll("Bus", "Camion", "Camioneta", "Deportivo", "Motocicleta", "Pick up", "Sedan", "Van");
+        cb_vehiculo.setOnAction(event -> manejarSeleccionTipo());
+        manejarSeleccionTipo();
         initView();
     }
 
@@ -345,6 +347,23 @@ public class GestionVehiculoViewController {
     @FXML
     void onOpenEmpleado() {
         app.openMenuEmpleado(empleado);
+    }
+
+    /**
+     * Metodo para mostrar la informacion de un vehiculo en los campos correspondientes de la tabla de vehiculos
+     * @param vehiculo Vehiculo con la informacion que se busca mostrar
+     */
+    private void mostrarInformacionVehiculo(Vehiculo vehiculo) {
+        if (vehiculo != null) {
+            txt_placa.setText(vehiculo.getPlaca());
+            txt_marca.setText(vehiculo.getMarca());
+            cb_estado.getSelectionModel().select(vehiculo.getEstadoVehiculo());
+            txt_modelo.setText(String.valueOf(vehiculo.getModelo()));
+            txt_cambios.setText(String.valueOf(vehiculo.getCantidadCambios()));
+            mostrarInformacionVehiculoPersonalizada(vehiculo);
+            txt_placa.setDisable(true);
+            cb_vehiculo.setDisable(true);
+        }
     }
 
     /**
@@ -393,6 +412,9 @@ public class GestionVehiculoViewController {
         }
         else if (tipoVehiculo.equals("Van")) {
             return new Van(txt_placa.getText(), txt_marca.getText(), estadoVehiculo, Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_cambios.getText()), Double.parseDouble(txt_velocidad.getText()), Double.parseDouble(txt_cilindraje.getText()), tipoTransmision, tipoUso, Integer.parseInt(txt_pasajeros.getText()), Integer.parseInt(txt_puertas.getText()), Integer.parseInt(txt_bolsas.getText()), Double.parseDouble(txt_maletero.getText()), aireAcondicionado, camaraReversa, frenosABS, sede);
+        }
+        else{
+            return null;
         }
     }
 
@@ -536,7 +558,7 @@ public class GestionVehiculoViewController {
     private void listenerSelection() {
         tbl_1.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             selectedVehiculo = newSelection;
-            mostrarInformacionVehiculo(selectedVehiculo);
+            //mostrarInformacionVehiculo(selectedVehiculo);
         });
     }
 
@@ -545,7 +567,7 @@ public class GestionVehiculoViewController {
      */
     private void limpiarSeleccion() {
         tbl_1.getSelectionModel().clearSelection();
-        lb_vehiculo.setVisible(false);
+        lb_placa.setVisible(false);
         txt_placa.setVisible(false);
         lb_marca.setVisible(false);
         txt_marca.setVisible(false);
@@ -555,7 +577,7 @@ public class GestionVehiculoViewController {
         txt_modelo.setVisible(false);
         lb_cambios.setVisible(false);
         txt_cambios.setVisible(false);
-        lb_vehiculo.setVisible(false);
+        lb_velocidad.setVisible(false);
         txt_velocidad.setVisible(false);
         lb_cilindraje.setVisible(false);
         txt_cilindraje.setVisible(false);
@@ -597,12 +619,16 @@ public class GestionVehiculoViewController {
         checkb_abs.setVisible(false);
         lb_hp.setVisible(false);
         txt_hp.setVisible(false);
-        lb_cambios.setVisible(false);
+        lb_camion.setVisible(false);
         txt_camion.setVisible(false);
         lb_tiempo.setVisible(false);
         txt_tiempo.setVisible(false);
         lb_cajacarga.setVisible(false);
-        txt_cajacarga.setVisible(false);        
+        txt_cajacarga.setVisible(false);  
+        lb_trafico.setVisible(false);      
+        checkb_trafico.setVisible(false);
+        lb_asistente.setVisible(false);
+        checkb_asistente.setVisible(false);
         limpiarCamposVehiculos();
     }
 
@@ -640,6 +666,8 @@ public class GestionVehiculoViewController {
         txt_camion.clear();
         txt_tiempo.clear();
         txt_cajacarga.clear();
+        checkb_trafico.setSelected(false);
+        checkb_asistente.setSelected(false);
     }
 
     /**
@@ -676,9 +704,302 @@ public class GestionVehiculoViewController {
         }
     }
 
+    /**
+     * Metodo para u ocultar diferentes casillas relacionadas con los datos de un vehiculo dependiendo de la seleccion que tenga el ComboBox cb_vehiculo
+     */
+    private void manejarSeleccionTipo(){
+        String tipoVehiculo = cb_vehiculo.getSelectionModel().getSelectedItem();
+        if (tipoVehiculo == null) {
+            limpiarSeleccion();
+            return;
+        }
+        lb_placa.setVisible(true);
+        txt_placa.setVisible(true);
+        lb_marca.setVisible(true);
+        txt_marca.setVisible(true);
+        lb_estado.setVisible(true);
+        cb_estado.setVisible(true);
+        lb_modelo.setVisible(true);
+        txt_modelo.setVisible(true);
+        lb_cambios.setVisible(true);
+        txt_cambios.setVisible(true);
+        lb_vehiculo.setVisible(true);
+        lb_velocidad.setVisible(true);
+        txt_velocidad.setVisible(true);
+        lb_cilindraje.setVisible(true);
+        txt_cilindraje.setVisible(true);
+        lb_transmision.setVisible(true);
+        cb_transmision.setVisible(true);
+        lb_uso.setVisible(true);
+        cb_uso.setVisible(true);
+        txt_placa.clear();
+        txt_marca.clear();
+        cb_estado.getSelectionModel().clearSelection();
+        txt_modelo.clear();
+        txt_cambios.clear();
+        txt_velocidad.clear();
+        txt_cilindraje.clear();
+        cb_transmision.getSelectionModel().clearSelection();
+        cb_uso.getSelectionModel().clearSelection();
+        if (tipoVehiculo.equals("Bus")) {
+            lb_enchufable.setVisible(true);
+            checkb_enchufable.setVisible(true);
+            lb_hibrido.setVisible(true);
+            checkb_hibrido.setVisible(true);
+            lb_pasajeros.setVisible(true);
+            txt_pasajeros.setVisible(true);
+            lb_puertas.setVisible(true);
+            txt_puertas.setVisible(true);
+            lb_bolsas.setVisible(true);
+            txt_bolsas.setVisible(true);
+            lb_ejes.setVisible(true);
+            txt_ejes.setVisible(true);
+            lb_salidas.setVisible(true);
+            txt_salidas.setVisible(true);
+            lb_maletero.setVisible(true);
+            txt_maletero.setVisible(true);
+            lb_aire.setVisible(true);
+            checkb_aire.setVisible(true);
+            lb_camara.setVisible(true);
+            checkb_camara.setVisible(true);
+            lb_abs.setVisible(true);
+            checkb_abs.setVisible(true);
+            checkb_crucero.setSelected(false);
+            txt_tiempocarga.clear();
+            txt_autonomia.clear();
+            checkb_colision.setSelected(false);
+            txt_hp.clear();
+            txt_camion.clear();
+            txt_tiempo.clear();
+            txt_cajacarga.clear();
+            checkb_trafico.setSelected(false);
+            checkb_asistente.setSelected(false);
+        }
+        else if (tipoVehiculo.equals("Camion")) {
+            lb_aire.setVisible(true);
+            checkb_aire.setVisible(true);
+            lb_camara.setVisible(true);
+            checkb_camara.setVisible(true);
+            lb_abs.setVisible(true);
+            checkb_abs.setVisible(true);
+            lb_ejes.setVisible(true);
+            txt_ejes.setVisible(true);
+            lb_cajacarga.setVisible(true);
+            txt_cajacarga.setVisible(true);
+            lb_camion.setVisible(true);
+            txt_camion.setVisible(true);
+            checkb_enchufable.setSelected(false);
+            checkb_hibrido.setSelected(false);
+            txt_pasajeros.clear();
+            txt_puertas.clear();
+            txt_bolsas.clear();
+            checkb_4x4.setSelected(false);
+            txt_salidas.clear();
+            txt_maletero.clear();
+            checkb_crucero.setSelected(false);
+            txt_tiempocarga.clear();
+            txt_autonomia.clear();
+            checkb_colision.setSelected(false);
+            txt_tiempo.clear();
+            checkb_trafico.setSelected(false);
+            checkb_asistente.setSelected(false);
+        }
+        else if (tipoVehiculo.equals("Camioneta")) {
+            lb_autonomia.setVisible(true);
+            txt_autonomia.setVisible(true);
+            lb_tiempocarga.setVisible(true);
+            txt_tiempocarga.setVisible(true);
+            lb_pasajeros.setVisible(true);
+            txt_pasajeros.setVisible(true);
+            lb_puertas.setVisible(true);
+            txt_puertas.setVisible(true);
+            lb_bolsas.setVisible(true);
+            txt_bolsas.setVisible(true);
+            lb_maletero.setVisible(true);
+            txt_maletero.setVisible(true);
+            lb_aire.setVisible(true);
+            checkb_aire.setVisible(true);
+            lb_camara.setVisible(true);
+            checkb_camara.setVisible(true);
+            lb_crucero.setVisible(true);
+            checkb_crucero.setVisible(true);
+            lb_abs.setVisible(true);
+            checkb_abs.setVisible(true);
+            lb_colision.setVisible(true);
+            checkb_colision.setVisible(true);
+            lb_trafico.setVisible(true);
+            checkb_trafico.setVisible(true);
+            lb_asistente.setVisible(true);
+            checkb_asistente.setVisible(true);
+            lb_4x4.setVisible(true);
+            checkb_4x4.setVisible(true);
+            checkb_enchufable.setSelected(false);
+            checkb_hibrido.setSelected(false);
+            txt_ejes.clear();
+            txt_salidas.clear();
+            txt_hp.clear();
+            txt_camion.clear();
+            txt_tiempo.clear();
+            txt_cajacarga.clear();
+        }
+        else if (tipoVehiculo.equals("Deportivo")) {
+            lb_pasajeros.setVisible(true);
+            txt_pasajeros.setVisible(true);
+            lb_puertas.setVisible(true);
+            txt_puertas.setVisible(true);
+            lb_bolsas.setVisible(true);
+            txt_bolsas.setVisible(true);
+            lb_hp.setVisible(true);
+            txt_hp.setVisible(true);
+            lb_tiempo.setVisible(true);
+            txt_tiempo.setVisible(true);
+            checkb_enchufable.setSelected(false);
+            checkb_enchufable.setSelected(false);
+            checkb_hibrido.setSelected(false);
+            checkb_4x4.setSelected(false);
+            txt_ejes.clear();
+            txt_salidas.clear();
+            txt_maletero.clear();
+            checkb_aire.setSelected(false);
+            checkb_camara.setSelected(false);
+            checkb_crucero.setSelected(false);
+            txt_tiempocarga.clear();
+            txt_autonomia.clear();
+            checkb_colision.setSelected(false);
+            checkb_abs.setSelected(false);
+            txt_camion.clear();
+            txt_cajacarga.clear();
+            checkb_trafico.setSelected(false);
+            checkb_asistente.setSelected(false);
+        }
+        else if (tipoVehiculo.equals("Pick up")) {
+            lb_autonomia.setVisible(true);
+            txt_autonomia.setVisible(true);
+            lb_tiempocarga.setVisible(true);
+            txt_tiempocarga.setVisible(true);
+            lb_pasajeros.setVisible(true);
+            txt_pasajeros.setVisible(true);
+            lb_puertas.setVisible(true);
+            txt_puertas.setVisible(true);
+            lb_bolsas.setVisible(true);
+            txt_bolsas.setVisible(true);
+            lb_cajacarga.setVisible(true);
+            txt_cajacarga.setVisible(true);
+            lb_aire.setVisible(true);
+            checkb_aire.setVisible(true);
+            lb_camara.setVisible(true);
+            checkb_camara.setVisible(true);
+            lb_abs.setVisible(true);
+            checkb_abs.setVisible(true);
+            lb_4x4.setVisible(true);
+            checkb_4x4.setVisible(true);
+            checkb_enchufable.setSelected(false);
+            checkb_hibrido.setSelected(false);
+            txt_ejes.clear();
+            txt_salidas.clear();
+            txt_maletero.clear();
+            checkb_crucero.setSelected(false);
+            checkb_colision.setSelected(false);
+            txt_hp.clear();
+            txt_camion.clear();
+            txt_tiempo.clear();
+            checkb_trafico.setSelected(false);
+            checkb_asistente.setSelected(false);
+        }
+        else if (tipoVehiculo.equals("Motocicleta")) {
+            checkb_enchufable.setSelected(false);
+            checkb_hibrido.setSelected(false);
+            txt_pasajeros.clear();
+            txt_puertas.clear();
+            txt_bolsas.clear();
+            checkb_4x4.setSelected(false);
+            txt_ejes.clear();
+            txt_salidas.clear();
+            txt_maletero.clear();
+            checkb_aire.setSelected(false);
+            checkb_camara.setSelected(false);
+            checkb_crucero.setSelected(false);
+            txt_tiempocarga.clear();
+            txt_autonomia.clear();
+            checkb_colision.setSelected(false);
+            checkb_abs.setSelected(false);
+            txt_hp.clear();
+            txt_camion.clear();
+            txt_tiempo.clear();
+            txt_cajacarga.clear();
+            checkb_trafico.setSelected(false);
+            checkb_asistente.setSelected(false);
+        }
+        else if (tipoVehiculo.equals("Sedan")) {
+            lb_enchufable.setVisible(true);
+            checkb_enchufable.setVisible(true);
+            lb_hibrido.setVisible(true);
+            checkb_hibrido.setVisible(true);
+            lb_pasajeros.setVisible(true);
+            txt_pasajeros.setVisible(true);
+            lb_puertas.setVisible(true);
+            txt_puertas.setVisible(true);
+            lb_bolsas.setVisible(true);
+            txt_bolsas.setVisible(true);
+            lb_maletero.setVisible(true);
+            txt_maletero.setVisible(true);
+            lb_aire.setVisible(true);
+            checkb_aire.setVisible(true);
+            lb_camara.setVisible(true);
+            checkb_camara.setVisible(true);
+            lb_crucero.setVisible(true);
+            checkb_crucero.setVisible(true);
+            lb_abs.setVisible(true);
+            checkb_abs.setVisible(true);
+            lb_colision.setVisible(true);
+            checkb_colision.setVisible(true);
+            lb_trafico.setVisible(true);
+            checkb_trafico.setVisible(true);
+            lb_asistente.setVisible(true);
+            checkb_asistente.setVisible(true);
+            checkb_4x4.setSelected(false);
+            txt_ejes.clear();
+            txt_salidas.clear();
+            txt_tiempocarga.clear();
+            txt_autonomia.clear();
+            txt_hp.clear();
+            txt_camion.clear();
+            txt_tiempo.clear();
+            txt_cajacarga.clear();
+        }
+        else if (tipoVehiculo.equals("Van")) {
+            lb_pasajeros.setVisible(true);
+            txt_pasajeros.setVisible(true);
+            lb_puertas.setVisible(true);
+            txt_puertas.setVisible(true);
+            lb_bolsas.setVisible(true);
+            txt_bolsas.setVisible(true);
+            lb_maletero.setVisible(true);
+            txt_maletero.setVisible(true);
+            lb_aire.setVisible(true);
+            checkb_aire.setVisible(true);
+            lb_camara.setVisible(true);
+            checkb_camara.setVisible(true);
+            lb_abs.setVisible(true);
+            checkb_abs.setVisible(true);
+            checkb_4x4.setSelected(false);
+            txt_ejes.clear();
+            txt_salidas.clear();
+            checkb_crucero.setSelected(false);
+            txt_tiempocarga.clear();
+            txt_autonomia.clear();
+            checkb_colision.setSelected(false);
+            txt_hp.clear();
+            txt_camion.clear();
+            txt_tiempo.clear();
+            txt_cajacarga.clear();
+            checkb_trafico.setSelected(false);
+            checkb_asistente.setSelected(false);
+        }
+    }
+
     @FXML
     void initialize() {
-        cb_vehiculo.getItems().addAll("Bus", "Camion", "Camioneta", "Deportivo", "Motocicleta", "Pick up", "Sedan", "Van");
         assert txt_marca != null : "fx:id=\"txt_marca\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
         assert lb_vehiculo != null : "fx:id=\"lb_vehiculo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
         assert lb_modelo != null : "fx:id=\"lb_modelo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
