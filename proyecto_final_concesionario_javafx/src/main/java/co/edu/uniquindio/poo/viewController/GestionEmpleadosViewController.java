@@ -252,7 +252,6 @@ public class GestionEmpleadosViewController {
     private void eliminarEmpleado(){
         if (gestionEmpleadoController.eliminarEmpleado(txt_2.getText())) {
             listaEmpleados.remove(selectedEmpleado);
-            limpiarCamposEmpleados();
             limpiarSeleccion();
         }
     }

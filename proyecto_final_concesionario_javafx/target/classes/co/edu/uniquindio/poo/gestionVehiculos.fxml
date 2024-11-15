@@ -9,8 +9,8 @@
    <children>
       <TableView fx:id="tbl_1" layoutX="27.0" layoutY="403.0" prefHeight="167.0" prefWidth="874.0" style="-fx-border-color: #e28743; -fx-border-width: 2; -fx-font-size: 15px;">
          <columns>
-            <TableColumn fx:id="cl_nombre" prefWidth="157.0" text="Placa" />
-            <TableColumn prefWidth="213.0" text="Estado Vehiculo" />
+            <TableColumn fx:id="cl_placa" prefWidth="157.0" text="Placa" />
+            <TableColumn fx:id="cl_estado" prefWidth="213.0" text="Estado Vehiculo" />
             <TableColumn fx:id="cl_uso" prefWidth="212.0" text="Tipo Uso" />
             <TableColumn fx:id="cl_disponibilidad" prefWidth="286.0" text="Estado disponibilidad" />
          </columns>
@@ -40,12 +40,12 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <Label fx:id="lb_2" layoutX="59.0" layoutY="129.0" text="Placa:" textFill="#e28743">
+      <Label fx:id="lb_placa" layoutX="59.0" layoutY="129.0" text="Placa:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_1" layoutX="153.0" layoutY="122.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_placa" layoutX="153.0" layoutY="122.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
@@ -55,265 +55,259 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <ComboBox fx:id="cb_1" layoutX="153.0" layoutY="80.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_21" layoutX="42.0" layoutY="86.0" text="Vehiculo:" textFill="#e28743">
+      <ComboBox fx:id="cb_vehiculo" layoutX="153.0" layoutY="80.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 13;" />
+      <Label fx:id="lb_vehiculo" layoutX="42.0" layoutY="86.0" text="Vehiculo:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_11" layoutX="154.0" layoutY="168.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_marca" layoutX="154.0" layoutY="168.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_22" layoutX="56.0" layoutY="174.0" text="Marca:" textFill="#e28743">
+      <Label fx:id="lb_marca" layoutX="56.0" layoutY="174.0" text="Marca:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lb_211" layoutX="52.0" layoutY="216.0" text="Estado:" textFill="#e28743">
+      <Label fx:id="lb_estado" layoutX="52.0" layoutY="216.0" text="Estado:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_11" layoutX="154.0" layoutY="213.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_221" layoutX="50.0" layoutY="261.0" text="Modelo:" textFill="#e28743">
+      <ComboBox fx:id="cb_estado" layoutX="154.0" layoutY="213.0" prefHeight="30.0" prefWidth="150.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 17px;" />
+      <Label fx:id="lb_modelo" layoutX="50.0" layoutY="261.0" text="Modelo:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_111" layoutX="154.0" layoutY="255.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_modelo" layoutX="154.0" layoutY="255.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_1111" layoutX="153.0" layoutY="301.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_cambios" layoutX="153.0" layoutY="301.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_2211" layoutX="42.0" layoutY="305.0" text="Cambios:" textFill="#e28743">
+      <Label fx:id="lb_cambios" layoutX="42.0" layoutY="305.0" text="Cambios:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lb_22111" layoutX="36.0" layoutY="356.0" text="Velocidad:" textFill="#e28743">
+      <Label fx:id="lb_velocidad" layoutX="36.0" layoutY="356.0" text="Velocidad:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_11111" layoutX="153.0" layoutY="350.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_velocidad" layoutX="153.0" layoutY="350.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_221111" layoutX="329.0" layoutY="84.0" text="Cilindraje:" textFill="#e28743">
+      <Label fx:id="lb_cilindraje" layoutX="329.0" layoutY="84.0" text="Cilindraje:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_111111" layoutX="454.0" layoutY="79.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_cilindraje" layoutX="454.0" layoutY="79.0" prefHeight="0.0" prefWidth="150.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_212" layoutX="315.0" layoutY="129.0" text="Transmision:" textFill="#e28743">
+      <Label fx:id="lb_transmision" layoutX="315.0" layoutY="129.0" text="Transmision:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_12" layoutX="454.0" layoutY="125.0" prefHeight="35.0" prefWidth="143.0" promptText="AUTOMATICA" style="-fx-font-family: 'Verdana'; -fx-font-size: 13px;" />
-      <Label fx:id="lb_2121" layoutX="334.0" layoutY="174.0" text="Tipo uso:" textFill="#e28743">
+      <ComboBox fx:id="cb_transmision" layoutX="454.0" layoutY="125.0" prefHeight="35.0" prefWidth="143.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 13px;" />
+      <Label fx:id="lb_uso" layoutX="334.0" layoutY="174.0" text="Tipo uso:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_121" layoutX="454.0" layoutY="171.0" prefHeight="32.0" prefWidth="143.0" promptText="ALQUILER" style="-fx-font-family: 'Verdana'; -fx-font-size: 16px;" />
-      <ComboBox fx:id="cb_1211" layoutX="454.0" layoutY="214.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_21211" layoutX="323.0" layoutY="217.0" text="Enchufable:" textFill="#e28743">
+      <ComboBox fx:id="cb_uso" layoutX="454.0" layoutY="171.0" prefHeight="32.0" prefWidth="143.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 16px;" />
+      <Label fx:id="lb_enchufable" layoutX="323.0" layoutY="217.0" text="Enchufable:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lb_212111" layoutX="323.0" layoutY="260.0" text="Hibrido lig:" textFill="#e28743">
+      <Label fx:id="lb_hibrido" layoutX="323.0" layoutY="260.0" text="Hibrido lig:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_12111" layoutX="454.0" layoutY="258.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_2121111" layoutX="326.0" layoutY="306.0" text="Pasajeros:" textFill="#e28743">
+      <Label fx:id="lb_pasajeros" layoutX="326.0" layoutY="306.0" text="Pasajeros:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_1111111" layoutX="454.0" layoutY="300.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_pasajeros" layoutX="454.0" layoutY="300.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_21211111" layoutX="336.0" layoutY="356.0" text="Puertas:" textFill="#e28743">
+      <Label fx:id="lb_puertas" layoutX="336.0" layoutY="356.0" text="Puertas:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_11111111" layoutX="454.0" layoutY="350.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_puertas" layoutX="454.0" layoutY="350.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_212111111" layoutX="637.0" layoutY="83.0" text="Bolsas aire:" textFill="#e28743">
+      <Label fx:id="lb_bolsas" layoutX="637.0" layoutY="83.0" text="Bolsas aire:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_111111111" layoutX="769.0" layoutY="77.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_bolsas" layoutX="769.0" layoutY="77.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_2121111111" layoutX="671.0" layoutY="129.0" text="Ejes:" textFill="#e28743">
+      <Label fx:id="lb_ejes" layoutX="736.0" layoutY="130.0" text="Ejes:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_11111112" layoutX="769.0" layoutY="123.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_ejes" layoutX="803.0" layoutY="122.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_21211111111" layoutX="625.0" layoutY="175.0" text="Salidas emergencia:" textFill="#e28743">
+      <Label fx:id="lb_salidas" layoutX="625.0" layoutY="175.0" text="Salidas emergencia:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_111111121" layoutX="842.0" layoutY="169.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_salidas" layoutX="842.0" layoutY="169.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_1111111211" layoutX="787.0" layoutY="210.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_maletero" layoutX="721.0" layoutY="211.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_2121111111111" layoutX="567.0" layoutY="216.0" text="Capacidad maletero:" textFill="#e28743">
+      <Label fx:id="lb_maletero" layoutX="501.0" layoutY="217.0" text="Capacidad maletero:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lb_212112" layoutX="570.0" layoutY="262.0" text="Aire Acondicionado:" textFill="#e28743">
+      <Label fx:id="lb_aire" layoutX="502.0" layoutY="262.0" text="Aire Acondicionado:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_12112" layoutX="787.0" layoutY="258.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_2121121" layoutX="589.0" layoutY="306.0" text="Camara Reversa" textFill="#e28743">
+      <Label fx:id="lb_camara" layoutX="585.0" layoutY="306.0" text="Camara Reversa:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_121121" layoutX="787.0" layoutY="302.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_21211111111111" layoutX="906.0" layoutY="314.0" text="Frenos ABS" textFill="#e28743">
+      <Label fx:id="lb_abs" layoutX="986.0" layoutY="218.0" text="Frenos ABS" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_1211211" layoutX="1038.0" layoutY="313.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <ComboBox fx:id="cb_121122" layoutX="1053.0" layoutY="80.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_2121122" layoutX="879.0" layoutY="84.0" text="Camara reversa:" textFill="#e28743">
+      <Label fx:id="lb_crucero" layoutX="569.0" layoutY="356.0" text="Velocidad crucero:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lb_21211221" layoutX="879.0" layoutY="129.0" text="Velocidad crucero:" textFill="#e28743">
+      <Label fx:id="lb_colision" layoutX="946.0" layoutY="174.0" text="Sensor colision:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_1211221" layoutX="1076.0" layoutY="126.0" prefHeight="35.0" prefWidth="85.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_212112211" layoutX="946.0" layoutY="174.0" text="Sensor colision:" textFill="#e28743">
+      <Label fx:id="lb_trafico" layoutX="830.0" layoutY="218.0" text="Sensor TC:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_12112211" layoutX="1117.0" layoutY="171.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_2121122111" layoutX="906.0" layoutY="216.0" text="Sensor TF:" textFill="#e28743">
+      <Label fx:id="lb_asistente" layoutX="757.0" layoutY="260.0" text="Asistente PC:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_121122111" layoutX="1030.0" layoutY="214.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_21211221111" layoutX="896.0" layoutY="262.0" text="Asistente PC" textFill="#e28743">
+      <Label fx:id="lb_autonomia" layoutX="918.0" layoutY="129.0" text="Autonomia:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_1211221111" layoutX="1038.0" layoutY="259.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_212112211111" layoutX="917.0" layoutY="362.0" text="Autonomia:" textFill="#e28743">
-         <font>
-            <Font name="Verdana Bold" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txt_111111122" layoutX="1050.0" layoutY="356.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_autonomia" layoutX="1046.0" layoutY="125.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_2121122111111" layoutX="922.0" layoutY="414.0" text="Tiempo carga:" textFill="#e28743">
+      <Label fx:id="lb_tiempocarga" layoutX="891.0" layoutY="83.0" text="Tiempo carga:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_1111111221" layoutX="1073.0" layoutY="408.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_tiempocarga" layoutX="1046.0" layoutY="77.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_21211221111111" layoutX="936.0" layoutY="466.0" text="Capacidad CC:" textFill="#e28743">
+      <Label fx:id="lb_cajacarga" layoutX="916.0" layoutY="405.0" text="Capacidad CC:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_11111112211" layoutX="1096.0" layoutY="460.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_cajacarga" layoutX="1073.0" layoutY="398.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_212112211111111" layoutX="964.0" layoutY="559.0" text="4x4:" textFill="#e28743">
+      <Label fx:id="lb_4x4" layoutX="619.0" layoutY="131.0" text="4x4:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cb_12112211111" layoutX="1038.0" layoutY="549.0" prefHeight="30.0" prefWidth="92.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_2121122111111111" layoutX="978.0" layoutY="508.0" text="HP:" textFill="#e28743">
+      <Label fx:id="lb_hp" layoutX="944.0" layoutY="262.0" text="Número HP:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_111111122111" layoutX="786.0" layoutY="351.0" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_tiempo" layoutX="1020.0" layoutY="350.0" prefHeight="36.0" prefWidth="85.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_1111111221111" layoutX="1037.0" layoutY="502.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_hp" layoutX="1081.0" layoutY="255.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
-      <Label fx:id="lb_21211221111111111" layoutX="579.0" layoutY="356.0" text="Tiempo 100km/h:" textFill="#e28743">
+      <Label fx:id="lb_tiempo" layoutX="827.0" layoutY="356.0" text="Tiempo 100km/h:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lb_212112211111111111" layoutX="929.0" layoutY="599.0" text="Tipo camion:" textFill="#e28743">
+      <Label fx:id="lb_camion" layoutX="825.0" layoutY="306.0" text="Tipo camion:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_11111112211111" layoutX="1070.0" layoutY="593.0" prefHeight="0.0" prefWidth="94.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
+      <TextField fx:id="txt_camion" layoutX="966.0" layoutY="300.0" prefHeight="36.0" prefWidth="199.0" style="-fx-background-color: #332625; -fx-text-fill: #e28743; -fx-border-color: #e28743; -fx-border-radius: 20; -fx-background-radius: 20; -fx-border-width: 2;">
          <font>
             <Font name="Verdana" size="16.0" />
          </font>
       </TextField>
+      <CheckBox fx:id="checkb_crucero" layoutX="767.0" layoutY="348.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_colision" layoutX="1113.0" layoutY="166.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_trafico" layoutX="942.0" layoutY="210.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_asistente" layoutX="899.0" layoutY="252.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_abs" layoutX="1113.0" layoutY="210.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_aire" layoutX="712.0" layoutY="255.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_camara" layoutX="767.0" layoutY="300.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_enchufable" layoutX="454.0" layoutY="209.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_hibrido" layoutX="454.0" layoutY="254.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
+      <CheckBox fx:id="checkb_4x4" layoutX="681.0" layoutY="123.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="12.0" style="-fx-font-size: 22;" />
    </children>
 </Pane>

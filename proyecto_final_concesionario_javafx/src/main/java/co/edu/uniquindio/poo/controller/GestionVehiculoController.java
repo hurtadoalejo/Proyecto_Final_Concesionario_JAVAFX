@@ -45,4 +45,14 @@ public class GestionVehiculoController {
     public boolean eliminarVehiculo(String placa){
         return empleado.eliminarVehiculo(placa);
     }
+
+    /**
+     * Metodo para actualizar un vehiculo
+     * @param placa Placa del vehiculo que se busca actualizar
+     * @param vehiculoNuevo Vehiculo con los datos nuevos
+     * @return Booleano sobre si se pudo actualizar el vehiculo o no
+     */
+    public boolean actualizarVehiculo(String placa, Vehiculo vehiculoNuevo){
+        return empleado.actualizarVehiculo(placa, vehiculoNuevo);
+    }
 }

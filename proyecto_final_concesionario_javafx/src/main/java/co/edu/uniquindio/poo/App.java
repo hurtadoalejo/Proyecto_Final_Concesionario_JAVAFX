@@ -15,6 +15,7 @@ import co.edu.uniquindio.poo.viewController.GestionClienteViewController;
 import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
 import co.edu.uniquindio.poo.viewController.GestionReportesViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
+import co.edu.uniquindio.poo.viewController.GestionVehiculoViewController;
 import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
 import co.edu.uniquindio.poo.viewController.LoginEmpleadoViewController;

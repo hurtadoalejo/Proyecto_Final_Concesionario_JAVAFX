@@ -112,21 +112,33 @@ public class GestionClienteViewController {
         initView();
     }
 
+    /**
+     * Metodo para manejar el evento de agregar un cliente
+     */
     @FXML
     void onAgregarCliente() {
         agregarCliente();
     }
 
+    /**
+     * Metodo para manejar el evento de actualizar un cliente
+     */
     @FXML
     void onActualizarCliente() {
         actualizarCliente();
     }
 
+    /**
+     * Metodo para manejar el evento de eliminar un cliente
+     */
     @FXML
     void onEliminarCliente() {
         eliminarCliente();
     }
 
+    /**
+     * Metodo para inicializar la interfaz del menu del empleado
+     */
     @FXML
     void onOpenEmpleado() {
         app.openMenuEmpleado(empleado);
