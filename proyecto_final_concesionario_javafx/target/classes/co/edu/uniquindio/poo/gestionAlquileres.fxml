@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.GestionVentasViewController">
+   <children>
+      <Label fx:id="lb_1" layoutX="416.0" layoutY="25.0" text="Gestión Alquileres" textFill="#ffbc8c">
+         <font>
+            <Font name="Verdana Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_fechaventa" layoutX="598.0" layoutY="170.0" text="Fecha alquiler:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_precio" layoutX="175.0" layoutY="172.0" text="Precio por día:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_cliente" layoutX="433.0" layoutY="109.0" text="Cliente:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbl_1" layoutX="165.0" layoutY="359.0" prefHeight="200.0" prefWidth="870.0" style=" -fx-border-color: #e28743; -fx-border-width: 2; -fx-font-size: 18px;">
+         <columns>
+            <TableColumn fx:id="cl_codigo" prefWidth="178.0" text="Código Alquiler" />
+            <TableColumn fx:id="cl_cedula" prefWidth="242.0" text="Cédula Cliente" />
+            <TableColumn fx:id="cl_placa" prefWidth="221.0" text="Placa Vehículo" />
+            <TableColumn fx:id="cl_precio" prefWidth="222.0" text="Precio Alquiler" />
+         </columns>
+      </TableView>
+      <Button fx:id="bt_4" layoutX="888.0" layoutY="286.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Limpiar" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_2" layoutX="433.0" layoutY="286.0" mnemonicParsing="false" onAction="#onActualizarAlquiler" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Actualizar Alquiler" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_1" layoutX="216.0" layoutY="286.0" mnemonicParsing="false" onAction="#onAgregarAlquiler" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Agregar Alquiler" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="dp_fechaventa" layoutX="794.0" layoutY="166.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 17px;" />
+      <ComboBox fx:id="cb_cliente" layoutX="541.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
+      <Label fx:id="lb_codigo" layoutX="92.0" layoutY="109.0" text="Codigo:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_codigo" layoutX="202.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txt_precio" layoutX="370.0" layoutY="166.0" prefHeight="40.0" prefWidth="200.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="bt_4" layoutX="495.0" layoutY="579.0" mnemonicParsing="false" onAction="#onOpenEmpleado" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Menú Empleado" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="22.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="cb_vehiculo" layoutX="905.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
+      <Label fx:id="lb_vehiculo" layoutX="778.0" layoutY="109.0" text="Vehiculo:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dp_fechaentrega" layoutX="599.0" layoutY="221.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 17px;" />
+      <Label fx:id="lb_fechaentrega" layoutX="398.0" layoutY="227.0" text="Fecha entrega:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_3" layoutX="670.0" layoutY="286.0" mnemonicParsing="false" onAction="#onEliminarAlquiler" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Eliminar alquiler" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

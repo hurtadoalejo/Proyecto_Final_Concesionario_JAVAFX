@@ -540,6 +540,27 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         }
         return accion;
     }
+    /**
+     * Metodo para actualizar un alquiler de la lista de alquileres de la sede del empleado
+     * @param codigo Codigo a verificar
+     * @param alquilerNuevo Alquiler con los datos nuevos
+     * @return Booleano sobre si se pudo actualizar el alquiler o no
+     */
+    public boolean actualizarAlquiler(int codigo, Alquiler alquilerNuevo){
+        boolean accion = false;
+        if (isAutenticado() && alquilerNuevo.getSede().equals(sede) && estadoEmpleado.equals(Estado_empleado.ACTIVO)){
+            for (Alquiler alquiler : listaAlquileres) {
+                if (alquiler.getCodigo() == codigo && alquilerNuevo.getCodigo() == codigo && alquiler.getEstadoAlquiler().equals(Estado_alquiler.PENDIENTE)) {
+                    accion = true;
+                    alquiler.setCliente(alquilerNuevo.getCliente());
+                    alquiler.setVehiculo(alquilerNuevo.getVehiculo());
+                    alquiler.setPrecioPorDia(alquilerNuevo.getPrecioPorDia());
+                    alquiler.setFechaAlquiler(alquilerNuevo.getFechaAlquiler());
+                }
+            }
+        }
+        return accion;
+    }
 
     /**
      * Metodo para agregar una compra a la lista de compras del empleado y de la sede
@@ -609,9 +630,11 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
      */
     public void devolverVehiculos(List<Detalle_compra> listaDetallesCompra){
         for (Detalle_compra detalle_compra : listaDetallesCompra) {
-            sede.getListaVehiculos().remove(detalle_compra.getVehiculo());
-            concesionario.getListaVehiculos().remove(detalle_compra.getVehiculo());
-            sede.aumentarDineroGastado(detalle_compra.getSubtotal()*-1);
+            if (detalle_compra.getVehiculo().getEstadoDisponibilidad().equals(Estado_disponibilidad.NO_DISPONIBLE)) {
+                sede.getListaVehiculos().remove(detalle_compra.getVehiculo());
+                concesionario.getListaVehiculos().remove(detalle_compra.getVehiculo());
+                sede.aumentarDineroGastado(detalle_compra.getSubtotal()*-1); 
+            }
         }
     }
     /**
