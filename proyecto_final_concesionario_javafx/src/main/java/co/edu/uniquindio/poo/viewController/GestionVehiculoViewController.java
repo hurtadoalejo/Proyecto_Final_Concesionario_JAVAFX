@@ -550,11 +550,10 @@ public class GestionVehiculoViewController {
     private void actualizarVehiculo(){
         if (verificarCasillasCorrectas() && verificarCasillasLlenas()) {
             if (selectedVehiculo != null && gestionVehiculoController.actualizarVehiculo(selectedVehiculo.getPlaca(), buildVehiculo())) {
-                System.out.println("Holi");
-                tbl_vehiculos.refresh();
                 limpiarSeleccion();
                 limpiarCamposVehiculos();
                 cb_vehiculo.getSelectionModel().clearSelection();
+                app.openGestionVehiculos(empleado);
             }
         }
     }
