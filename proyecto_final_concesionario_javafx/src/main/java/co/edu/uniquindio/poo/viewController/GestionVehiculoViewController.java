@@ -306,12 +306,6 @@ public class GestionVehiculoViewController {
     @SuppressWarnings("exports")
     public void inicializarEmpleado(Empleado empleado) {
         gestionVehiculoController = new GestionVehiculoController(empleado, App.concesionario);
-        cb_estado.getItems().addAll(Estado_vehiculo.values());
-        cb_uso.getItems().addAll(Tipo_uso.values());
-        cb_transmision.getItems().addAll(Tipo_transmision.values());
-        cb_vehiculo.getItems().addAll("Bus", "Camion", "Camioneta", "Deportivo", "Motocicleta", "Pick up", "Sedan", "Van");
-        cb_vehiculo.setOnAction(event -> manejarSeleccionTipo());
-        manejarSeleccionTipo();
         initView();
     }
 
@@ -345,8 +339,8 @@ public class GestionVehiculoViewController {
     @FXML
     void onLimpiar() {
         limpiarSeleccion();
+        limpiarCamposVehiculos();
         cb_vehiculo.getSelectionModel().clearSelection();
-        cb_vehiculo.setDisable(false);
     }
 
     /**
@@ -363,6 +357,7 @@ public class GestionVehiculoViewController {
      */
     private void mostrarInformacionVehiculo(Vehiculo vehiculo) {
         if (vehiculo != null) {
+            mostrarInformacionPersonalizadaVehiculo(vehiculo);
             txt_placa.setText(vehiculo.getPlaca());
             txt_marca.setText(vehiculo.getMarca());
             cb_estado.getSelectionModel().select(vehiculo.getEstadoVehiculo());
@@ -373,8 +368,7 @@ public class GestionVehiculoViewController {
             cb_transmision.getSelectionModel().select(vehiculo.getTipoTransmision());
             cb_uso.getSelectionModel().select(vehiculo.getTipoUso());
             txt_placa.setDisable(true);
-            cb_vehiculo.setDisable(true);
-            mostrarInformacionPersonalizadaVehiculo(vehiculo);
+            cb_vehiculo.setDisable(true);      
         }
     }
 
@@ -396,13 +390,7 @@ public class GestionVehiculoViewController {
             checkb_aire.setSelected(bus.isTieneAireAcondicionado());
             checkb_camara.setSelected(bus.isTieneCamaraReversa());
             checkb_abs.setSelected(bus.isTieneABS());
-            if (cb_vehiculo.getItems().isEmpty()) {
-                System.out.println("El ComboBox está vacío.");
-            } else {
-                System.out.println("El ComboBox tiene elementos.");
-                cb_vehiculo.getSelectionModel().select(0);
-            }
-           
+            cb_vehiculo.getSelectionModel().select(0);
         } 
         else if (vehiculo instanceof Camion) {
             Camion camion = (Camion) vehiculo;
@@ -412,7 +400,7 @@ public class GestionVehiculoViewController {
             txt_ejes.setText(String.valueOf(camion.getNumEjes()));
             txt_cajacarga.setText(String.valueOf(camion.getCapacidadCajaCarga()));
             txt_camion.setText(camion.getTipoCamion());
-            //cb_vehiculo.getSelectionModel().select(1);
+            cb_vehiculo.getSelectionModel().select(1);
         }
         else if (vehiculo instanceof Camioneta) {
             Camioneta camioneta = (Camioneta) vehiculo;
@@ -430,7 +418,7 @@ public class GestionVehiculoViewController {
             checkb_trafico.setSelected(camioneta.isTieneSensorTraficoCruzado());
             checkb_asistente.setSelected(camioneta.isTieneAsistentePermanenciaCarril());
             checkb_4x4.setSelected(camioneta.isEsCuatroXCuatro());
-            //cb_vehiculo.getSelectionModel().select(2);
+            cb_vehiculo.getSelectionModel().select(2);
         }
         else if (vehiculo instanceof Deportivo) {
             Deportivo deportivo = (Deportivo) vehiculo;
@@ -439,10 +427,10 @@ public class GestionVehiculoViewController {
             txt_bolsas.setText(String.valueOf(deportivo.getNumBolsasAire()));
             txt_hp.setText(String.valueOf(deportivo.getNumHP()));
             txt_tiempo.setText(String.valueOf(deportivo.getTiempoCienKm()));
-            //cb_vehiculo.getSelectionModel().select(3);
+            cb_vehiculo.getSelectionModel().select(3);
         }
         else if (vehiculo instanceof Motocicleta) {
-            //cb_vehiculo.getSelectionModel().select(4);
+            cb_vehiculo.getSelectionModel().select(4);
         }
         else if (vehiculo instanceof Pick_up) {
             Pick_up pickUp = (Pick_up) vehiculo;
@@ -456,7 +444,7 @@ public class GestionVehiculoViewController {
             checkb_camara.setSelected(pickUp.isTieneCamaraReversa());
             checkb_abs.setSelected(pickUp.isTieneABS());
             checkb_4x4.setSelected(pickUp.isEsCuatroXCuatro());
-            //cb_vehiculo.getSelectionModel().select(5);
+            cb_vehiculo.getSelectionModel().select(5);
         }
         else if (vehiculo instanceof Sedan) {
             Sedan sedan = (Sedan) vehiculo;
@@ -473,7 +461,7 @@ public class GestionVehiculoViewController {
             checkb_colision.setSelected(sedan.isTieneSensorColision());
             checkb_trafico.setSelected(sedan.isTieneSensorTraficoCruzado());
             checkb_asistente.setSelected(sedan.isTieneAsistentePermanenciaCarril());
-            //cb_vehiculo.getSelectionModel().select(6);
+            cb_vehiculo.getSelectionModel().select(6);
         }
         else if (vehiculo instanceof Van) {
             Van van = (Van) vehiculo;
@@ -484,7 +472,7 @@ public class GestionVehiculoViewController {
             checkb_aire.setSelected(van.isTieneAireAcondicionado());
             checkb_camara.setSelected(van.isTieneCamaraReversa());
             checkb_abs.setSelected(van.isTieneABS());
-            //cb_vehiculo.getSelectionModel().select(7);
+            cb_vehiculo.getSelectionModel().select(7);
         }
     }
 
@@ -550,6 +538,7 @@ public class GestionVehiculoViewController {
             if (gestionVehiculoController.crearVehiculo(vehiculo)) {
                 listaVehiculos.add(vehiculo);
                 limpiarSeleccion();
+                limpiarCamposVehiculos();
                 cb_vehiculo.getSelectionModel().clearSelection();
             }
         }
@@ -561,8 +550,10 @@ public class GestionVehiculoViewController {
     private void actualizarVehiculo(){
         if (verificarCasillasCorrectas() && verificarCasillasLlenas()) {
             if (selectedVehiculo != null && gestionVehiculoController.actualizarVehiculo(selectedVehiculo.getPlaca(), buildVehiculo())) {
+                System.out.println("Holi");
                 tbl_vehiculos.refresh();
                 limpiarSeleccion();
+                limpiarCamposVehiculos();
                 cb_vehiculo.getSelectionModel().clearSelection();
             }
         }
@@ -575,6 +566,7 @@ public class GestionVehiculoViewController {
         if (gestionVehiculoController.eliminarVehiculo(txt_placa.getText())) {
             listaVehiculos.remove(selectedVehiculo);
             limpiarSeleccion();
+            limpiarCamposVehiculos();
             cb_vehiculo.getSelectionModel().clearSelection();
         }
     }
@@ -692,6 +684,8 @@ public class GestionVehiculoViewController {
      * Metodo para limpiar la seleccion de un elementos en la tabla de vehiculos
      */
     private void limpiarSeleccion() {
+        cb_vehiculo.setDisable(false);
+        txt_placa.setDisable(false);
         tbl_vehiculos.getSelectionModel().clearSelection();
         lb_placa.setVisible(false);
         txt_placa.setVisible(false);
@@ -757,7 +751,6 @@ public class GestionVehiculoViewController {
         checkb_asistente.setVisible(false);
         lb_frenosaire.setVisible(false);
         checkb_frenosaire.setVisible(false);
-        limpiarCamposVehiculos();
     }
 
     /**
@@ -837,13 +830,12 @@ public class GestionVehiculoViewController {
      */
     private void manejarSeleccionTipo(){
         String tipoVehiculo = cb_vehiculo.getSelectionModel().getSelectedItem();
-        limpiarSeleccion();
         if (tipoVehiculo == null) {
+            limpiarSeleccion();
             return;
         }
         lb_placa.setVisible(true);
         txt_placa.setVisible(true);
-        txt_placa.setDisable(false);
         lb_marca.setVisible(true);
         txt_marca.setVisible(true);
         lb_estado.setVisible(true);
@@ -1129,6 +1121,12 @@ public class GestionVehiculoViewController {
 
     @FXML
     void initialize() {
+        cb_estado.getItems().addAll(Estado_vehiculo.values());
+        cb_uso.getItems().addAll(Tipo_uso.values());
+        cb_transmision.getItems().addAll(Tipo_transmision.values());
+        cb_vehiculo.getItems().addAll("Bus", "Camion", "Camioneta", "Deportivo", "Motocicleta", "Pick up", "Sedan", "Van");
+        cb_vehiculo.setOnAction(event -> manejarSeleccionTipo());
+        manejarSeleccionTipo();
         assert txt_marca != null : "fx:id=\"txt_marca\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
         assert lb_vehiculo != null : "fx:id=\"lb_vehiculo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
         assert lb_modelo != null : "fx:id=\"lb_modelo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
