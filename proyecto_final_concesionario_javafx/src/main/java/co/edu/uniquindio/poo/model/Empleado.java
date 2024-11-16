@@ -444,6 +444,8 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
                     listaVentas.remove(venta);
                     sede.aumentarDineroGenerado(venta.getTotalVenta()*-1);
                     sede.getListaVentas().remove(venta);
+                    sede.getListaVehiculos().add(venta.getVehiculo());
+                    concesionario.getListaVehiculos().add(venta.getVehiculo());
                     sede.setDineroGanadoNeto(sede.calcularDineroGanadoNeto());
                     accion = true;
                     break;

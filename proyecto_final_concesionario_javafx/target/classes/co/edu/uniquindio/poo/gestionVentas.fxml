@@ -12,17 +12,17 @@
             <Font name="Verdana Bold" size="36.0" />
          </font>
       </Label>
-      <Label fx:id="lb_fecha" layoutX="605.0" layoutY="186.0" text="Fecha venta:" textFill="#e28743">
+      <Label fx:id="lb_fecha" layoutX="600.0" layoutY="186.0" text="Fecha venta:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="lb_precio" layoutX="600.0" layoutY="111.0" text="Precio venta:" textFill="#e28743">
+      <Label fx:id="lb_precio" layoutX="177.0" layoutY="188.0" text="Precio venta:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="lb_cliente" layoutX="222.0" layoutY="186.0" text="Cliente:" textFill="#e28743">
+      <Label fx:id="lb_cliente" layoutX="811.0" layoutY="109.0" text="Cliente:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="22.0" />
          </font>
@@ -35,34 +35,34 @@
             <TableColumn fx:id="cl_precio" prefWidth="222.0" text="Precio venta" />
          </columns>
       </TableView>
-      <Button fx:id="bt_3" layoutX="754.0" layoutY="264.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Limpiar" textFill="#e28743">
+      <Button fx:id="bt_3" layoutX="727.0" layoutY="262.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Limpiar" textFill="#e28743">
          <font>
             <Font name="Verdana" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="bt_2" layoutX="525.0" layoutY="264.0" mnemonicParsing="false" onAction="#onEliminarVenta" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Eliminar Reporte" textFill="#e28743">
+      <Button fx:id="bt_2" layoutX="516.0" layoutY="262.0" mnemonicParsing="false" onAction="#onEliminarVenta" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Eliminar Venta" textFill="#e28743">
          <font>
             <Font name="Verdana" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="bt_1" layoutX="317.0" layoutY="264.0" mnemonicParsing="false" onAction="#onAgregarVenta" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Agregar Venta" textFill="#e28743">
+      <Button fx:id="bt_1" layoutX="308.0" layoutY="262.0" mnemonicParsing="false" onAction="#onAgregarVenta" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Agregar Venta" textFill="#e28743">
          <font>
             <Font name="Verdana" size="20.0" />
          </font>
       </Button>
-      <DatePicker fx:id="dp_fecha" layoutX="789.0" layoutY="180.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 17px;" />
-      <ComboBox fx:id="cb_cliente" layoutX="343.0" layoutY="180.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
-      <Label fx:id="lb_codigo" layoutX="224.0" layoutY="111.0" text="Codigo:" textFill="#e28743">
+      <DatePicker fx:id="dp_fecha" layoutX="770.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 17px;" />
+      <ComboBox fx:id="cb_cliente" layoutX="919.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
+      <Label fx:id="lb_codigo" layoutX="92.0" layoutY="109.0" text="Codigo:" textFill="#e28743">
          <font>
             <Font name="Verdana Bold" size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="txt_codigo" layoutX="343.0" layoutY="105.0" prefHeight="40.0" prefWidth="200.0">
+      <TextField fx:id="txt_codigo" layoutX="202.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_precio" layoutX="789.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0">
+      <TextField fx:id="txt_precio" layoutX="356.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
@@ -72,5 +72,11 @@
             <Font name="Verdana" size="22.0" />
          </font>
       </Button>
+      <ComboBox fx:id="cb_vehiculo" layoutX="573.0" layoutY="103.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
+      <Label fx:id="lb_vehiculo" layoutX="446.0" layoutY="109.0" text="Vehiculo:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

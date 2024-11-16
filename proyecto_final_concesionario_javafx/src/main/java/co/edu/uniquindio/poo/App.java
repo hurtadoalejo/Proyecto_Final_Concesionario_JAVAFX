@@ -16,6 +16,7 @@ import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
 import co.edu.uniquindio.poo.viewController.GestionReportesViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
 import co.edu.uniquindio.poo.viewController.GestionVehiculoViewController;
+import co.edu.uniquindio.poo.viewController.GestionVentasViewController;
 import co.edu.uniquindio.poo.viewController.IngresarConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.LoginAdminViewController;
 import co.edu.uniquindio.poo.viewController.LoginEmpleadoViewController;
@@ -383,6 +384,30 @@ public class App extends Application {
             gestionVehiculoViewController.setApp(this);
             gestionVehiculoViewController.setEmpleado(empleado);
             gestionVehiculoViewController.inicializarEmpleado(empleado);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar el menu de gestion de ventas
+     */
+    @SuppressWarnings("exports")
+    public void openGestionVentas(Empleado empleado) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("gestionVentas.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            GestionVentasViewController gestionVentasViewController = loader.getController();
+            gestionVentasViewController.setApp(this);
+            gestionVentasViewController.setEmpleado(empleado);
+            gestionVentasViewController.inicializarController(empleado);
             
             
             Scene scene = new Scene(rootLayout);

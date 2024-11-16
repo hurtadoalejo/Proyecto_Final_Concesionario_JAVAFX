@@ -217,7 +217,7 @@ public class GestionReportesViewController {
             dp_1.setDisable(true);
             dp_2.setValue(reporte.getFechaFin());
             dp_2.setDisable(true);
-            if (reporte.getEmpleado() != null) {
+            if (reporte.getSede().getListaEmpleados().contains(reporte.getEmpleado())) {
                 cb_1.setValue(reporte.getEmpleado());
             }
             cb_1.setDisable(true);

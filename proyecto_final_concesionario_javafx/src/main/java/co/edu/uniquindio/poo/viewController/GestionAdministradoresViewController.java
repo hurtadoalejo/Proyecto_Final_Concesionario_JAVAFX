@@ -204,7 +204,7 @@ public class GestionAdministradoresViewController {
      * Metodo para crear un Administrador con los datos ingresados en los campos de texto
      * @return Administrador creado
      */
-    private Administrador builAdministrador(){
+    private Administrador buildAdministrador(){
         Sede sedeSeleccionada = cb_1.getSelectionModel().getSelectedItem();
         Administrador administrador = new Administrador(txt_1.getText(), txt_2.getText(), txt_3.getText(), Double.parseDouble(txt_4.getText()), sedeSeleccionada, txt_5.getText(), Integer.parseInt(txt_6.getText()), App.concesionario, txt_7.getText());
         return administrador;
@@ -215,7 +215,7 @@ public class GestionAdministradoresViewController {
      */
     private void agregarAdministrador(){
         if (verificarCasillasCorrecta() && verificarCasillasLlenas()) {
-            Administrador administrador = builAdministrador();
+            Administrador administrador = buildAdministrador();
             if (gestionAdministradoresController.crearAdministrador(administrador)) {
                 listaAdministradores.add(administrador);
                 limpiarCamposAdministradores();
@@ -228,7 +228,7 @@ public class GestionAdministradoresViewController {
      */
     private void actualizarAdministrador(){
         if (verificarCasillasCorrecta() && verificarCasillasLlenas()) {
-            if (selectedAdministrador != null && gestionAdministradoresController.actualizarAdministrador(selectedAdministrador.getIdentificacion(), builAdministrador())) {
+            if (selectedAdministrador != null && gestionAdministradoresController.actualizarAdministrador(selectedAdministrador.getIdentificacion(), buildAdministrador())) {
                 tbl_1.refresh();
                 limpiarSeleccion();
                 limpiarCamposAdministradores();
