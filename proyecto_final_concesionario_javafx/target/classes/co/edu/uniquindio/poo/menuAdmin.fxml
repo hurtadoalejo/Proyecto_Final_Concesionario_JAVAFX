@@ -27,7 +27,7 @@
             <Font name="Verdana" size="36.0" />
          </font>
       </Button>
-      <Button fx:id="bt_3" layoutX="402.0" layoutY="444.0" mnemonicParsing="false" onAction="#onOpenGestionEmpleados" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Gestión empleados" textFill="#e28743">
+      <Button fx:id="bt_3" layoutX="402.0" layoutY="444.0" mnemonicParsing="false" onAction="#onOpenGestionEmpleados" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Gestión Empleados" textFill="#e28743">
          <font>
             <Font name="Verdana" size="36.0" />
          </font>
