@@ -11,6 +11,7 @@ import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.model.Empleado;
 import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
+import co.edu.uniquindio.poo.viewController.GestionAlquileresViewController;
 import co.edu.uniquindio.poo.viewController.GestionClienteViewController;
 import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
 import co.edu.uniquindio.poo.viewController.GestionReportesViewController;

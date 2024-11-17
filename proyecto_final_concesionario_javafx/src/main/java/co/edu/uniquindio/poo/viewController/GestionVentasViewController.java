@@ -168,6 +168,10 @@ public class GestionVentasViewController {
         app.openMenuEmpleado(empleado);
     }
 
+    /**
+     * Metodo para mostrar la informacion de una venta
+     * @param venta Venta que se busca mostrar
+     */
     private void mostrarInformacionVenta(Venta venta) {
         if (venta != null) {
             dp_fecha.setValue(venta.getFechaVenta());
@@ -210,7 +214,7 @@ public class GestionVentasViewController {
     }
 
     /**
-     * Metodo para eliminar una sede de la lista de ventas segun el codgio proporcionado
+     * Metodo para eliminar una venta de la lista de ventas segun el codigo proporcionado
      */
     private void eliminarVenta(){
         if (esEntero(txt_codigo.getText())) {
