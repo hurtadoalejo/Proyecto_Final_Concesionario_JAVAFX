@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.GestionComprasViewController">
+   <children>
+      <Label fx:id="lb_1" layoutX="428.0" layoutY="27.0" text="Gestión Compras" textFill="#ffbc8c">
+         <font>
+            <Font name="Verdana Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb_cliente" layoutX="616.0" layoutY="113.0" text="Cliente:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbl_1" layoutX="165.0" layoutY="338.0" prefHeight="221.0" prefWidth="870.0" style=" -fx-border-color: #e28743; -fx-border-width: 2; -fx-font-size: 18px;">
+         <columns>
+            <TableColumn fx:id="cl_codigo" prefWidth="178.0" text="Codigo Compra" />
+            <TableColumn fx:id="cl_cedula" prefWidth="242.0" text="Cédula Cliente" />
+            <TableColumn fx:id="cl_fecha" prefWidth="221.0" text="Fecha Compra" />
+            <TableColumn fx:id="cl_precio" prefWidth="222.0" text="Precio Compra" />
+         </columns>
+      </TableView>
+      <Button fx:id="bt_4" layoutX="748.0" layoutY="261.0" mnemonicParsing="false" onAction="#onLimpiar" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Limpiar" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_2" layoutX="292.0" layoutY="261.0" mnemonicParsing="false" onAction="#onActualizarCompra" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Actualizar Compra" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_1" layoutX="75.0" layoutY="261.0" mnemonicParsing="false" onAction="#onAgregarCompra" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Agregar Compra" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="cb_cliente" layoutX="724.0" layoutY="107.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 18px;" />
+      <Label fx:id="lb_codigo" layoutX="275.0" layoutY="113.0" text="Codigo:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_codigo" layoutX="385.0" layoutY="107.0" prefHeight="40.0" prefWidth="200.0">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="bt_4" layoutX="495.0" layoutY="579.0" mnemonicParsing="false" onAction="#onOpenEmpleado" style="-fx-background-color: #1A0E09; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Menú Empleado" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="22.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="dp_fechaCompra" layoutX="386.0" layoutY="176.0" prefHeight="40.0" prefWidth="200.0" style="-fx-font-family: 'Verdana'; -fx-font-size: 17px;" />
+      <Label fx:id="lb_fechaentrega" layoutX="185.0" layoutY="182.0" text="Fecha Compra:" textFill="#e28743">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_3" layoutX="529.0" layoutY="261.0" mnemonicParsing="false" onAction="#onEliminarCompra" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Eliminar Compra" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_5" layoutX="877.0" layoutY="261.0" mnemonicParsing="false" onAction="#onConcretarCompra" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Concretar Compra" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_6" layoutX="751.0" layoutY="175.0" mnemonicParsing="false" onAction="#onOpenDetalleCompra" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743; -fx-border-width: 2;" text="Ir al carrito" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

@@ -13,6 +13,7 @@ import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;
 import co.edu.uniquindio.poo.viewController.GestionAdministradoresViewController;
 import co.edu.uniquindio.poo.viewController.GestionAlquileresViewController;
 import co.edu.uniquindio.poo.viewController.GestionClienteViewController;
+import co.edu.uniquindio.poo.viewController.GestionComprasViewController;
 import co.edu.uniquindio.poo.viewController.GestionEmpleadosViewController;
 import co.edu.uniquindio.poo.viewController.GestionReportesViewController;
 import co.edu.uniquindio.poo.viewController.GestionSedesViewController;
@@ -433,6 +434,54 @@ public class App extends Application {
             gestionAlquileresViewController.setApp(this);
             gestionAlquileresViewController.setEmpleado(empleado);
             gestionAlquileresViewController.inicializarController(empleado);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar el menu de gestion de compras
+     */
+    @SuppressWarnings("exports")
+    public void openGestionCompras(Empleado empleado) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("gestionCompras.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            GestionComprasViewController gestionComprasViewController = loader.getController();
+            gestionComprasViewController.setApp(this);
+            gestionComprasViewController.setEmpleado(empleado);
+            gestionComprasViewController.inicializarController(empleado);
+            
+            
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Metodo para inicializar el menu de gestion de detalles de compra
+     */
+    @SuppressWarnings("exports")
+    public void openDetalleCompra(Compra compra) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("detalleCompra.fxml"));
+            javafx.scene.layout.Pane rootLayout = (javafx.scene.layout.Pane) loader.load();
+            DetalleCompraViewController detalleCompraViewController = loader.getController();
+            detalleCompraViewController.setApp(this);
+            detalleCompraViewController.setCompra(compra);
+            detalleCompraViewController.inicializarController(compra);
             
             
             Scene scene = new Scene(rootLayout);

@@ -4,9 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
-import co.edu.uniquindio.poo.controller.MenuAdminController;
 import co.edu.uniquindio.poo.controller.MenuEmpleadoController;
-import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Empleado;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

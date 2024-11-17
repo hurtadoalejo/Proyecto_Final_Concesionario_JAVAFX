@@ -572,6 +572,7 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         if (!verificarCompra(compra.getCodigo()) && isAutenticado() && !compra.isConcretada() && compra.getSede().equals(sede) && verificarCliente(compra.getCliente().getIdentificacion()) && estadoEmpleado.equals(Estado_empleado.ACTIVO)) {
             listaCompras.add(compra);
             sede.getListaCompras().add(compra);
+            accion = true;
         }
         return accion;
     }
@@ -651,12 +652,31 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
                     Vehiculo vehiculo = detalleCompra.getVehiculo();
                     sede.getListaVehiculos().add(vehiculo);
                     concesionario.getListaVehiculos().add(vehiculo);
-                    accion = true;
                 }
+                accion = true;
                 habilitarVehiculosCompra(compraTemporal.getListaDetallesCompra());
                 sede.aumentarDineroGastado(compraTemporal.getTotalCompra());
                 sede.setDineroGanadoNeto(sede.calcularDineroGanadoNeto());
                 break;
+            }
+        }
+        return accion;
+    }
+    /**
+     * Metodo para actualizar una compra de la lista de compras de la sede del empleado
+     * @param codigo Codigo a verificar
+     * @param compraNueva Compra con los datos nuevos
+     * @return Booleano sobre si se pudo actualizar el alquiler o no
+     */
+    public boolean actualizarCompra(int codigo, Compra compraNueva){
+        boolean accion = false;
+        if (isAutenticado() && compraNueva.getSede().equals(sede) && estadoEmpleado.equals(Estado_empleado.ACTIVO)){
+            for (Compra compra : listaCompras) {
+                if (compra.getCodigo() == codigo && compraNueva.getCodigo() == codigo && !compra.isConcretada()) {
+                    accion = true;
+                    compra.setCliente(compraNueva.getCliente());
+                    compra.setFechaCompra(compraNueva.getFechaCompra());
+                }
             }
         }
         return accion;
