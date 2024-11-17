@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+import co.edu.uniquindio.poo.viewController.DetalleCompraViewController;
 import co.edu.uniquindio.poo.model.Administrador;
+import co.edu.uniquindio.poo.model.Compra;
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.model.Empleado;
 import co.edu.uniquindio.poo.viewController.ConcesionarioViewController;

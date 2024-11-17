@@ -577,15 +577,6 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
         return accion;
     }
     /**
-     * Metodo para habilitar todos los vehiculos que se han comprado a un cliente
-     * @param listaDetallesCompra Lista de detalles de una compra efectuada
-     */
-    public void habilitarVehiculosCompra(List<Detalle_compra> listaDetallesCompra){
-        for (Detalle_compra detalle_compra : listaDetallesCompra) {
-            detalle_compra.getVehiculo().setEstadoDisponibilidad(Estado_disponibilidad.DISPONIBLE);
-        }
-    }
-    /**
      * Metodo para verificar si hay una compra con el mismo codigo que uno dado en la lista de compras de la sede 
      * @param codigo Codigo a verificar
      * @return Booleano sobre si existe una compra con esta condicion o no
@@ -631,7 +622,7 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
      */
     public void devolverVehiculos(List<Detalle_compra> listaDetallesCompra){
         for (Detalle_compra detalle_compra : listaDetallesCompra) {
-            if (detalle_compra.getVehiculo().getEstadoDisponibilidad().equals(Estado_disponibilidad.NO_DISPONIBLE)) {
+            if (detalle_compra.getVehiculo().getEstadoDisponibilidad().equals(Estado_disponibilidad.DISPONIBLE)) {
                 sede.getListaVehiculos().remove(detalle_compra.getVehiculo());
                 concesionario.getListaVehiculos().remove(detalle_compra.getVehiculo());
                 sede.aumentarDineroGastado(detalle_compra.getSubtotal()*-1); 
@@ -654,7 +645,6 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
                     concesionario.getListaVehiculos().add(vehiculo);
                 }
                 accion = true;
-                habilitarVehiculosCompra(compraTemporal.getListaDetallesCompra());
                 sede.aumentarDineroGastado(compraTemporal.getTotalCompra());
                 sede.setDineroGanadoNeto(sede.calcularDineroGanadoNeto());
                 break;

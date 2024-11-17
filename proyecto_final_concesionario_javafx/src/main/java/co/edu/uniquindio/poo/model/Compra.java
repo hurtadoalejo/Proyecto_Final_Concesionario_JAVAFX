@@ -167,8 +167,8 @@ public class Compra {
         boolean accion = false;
         if (verificarDetalleCompra(detalleCompra)) {
             listaDetallesCompra.add(detalleCompra);
-            detalleCompra.getVehiculo().setEstadoDisponibilidad(Estado_disponibilidad.NO_DISPONIBLE);
             setTotalCompra(calcularTotal());
+            accion = true;
         }
         return accion;
     }
@@ -180,8 +180,24 @@ public class Compra {
      */
     public boolean verificarDetalleCompra(Detalle_compra detalleCompra){
         boolean accion = false;
-        if (detalleCompra.isTecnomecanicaValida() && detalleCompra.getVehiculo().getTipoUso().equals(Tipo_uso.VENTA) && detalleCompra.getCompra().getCodigo() == codigo && detalleCompra.getVehiculo().getEstadoDisponibilidad().equals(Estado_disponibilidad.DISPONIBLE) && !empleado.verificarVehiculo(detalleCompra.getVehiculo().getPlaca()) && !concretada) {
+        if (detalleCompra.isTecnomecanicaValida() && detalleCompra.getVehiculo().getTipoUso().equals(Tipo_uso.VENTA) && detalleCompra.getCompra().getCodigo() == codigo && detalleCompra.getVehiculo().getEstadoDisponibilidad().equals(Estado_disponibilidad.DISPONIBLE) && !empleado.verificarVehiculo(detalleCompra.getVehiculo().getPlaca()) && !concretada && !verificarVehiculoEnCompra(detalleCompra.getVehiculo().getPlaca())) {
             accion = true;
+        }
+        return accion;
+    }
+
+    /**
+     * Metodo para verificar si hay algun vehiculo con la misma placa en la lista de detalles de compra de la compra
+     * @param placa Placa a verificar
+     * @return Booleano sobre si existe algun vehiculo con esta condicion o no
+     */
+    public boolean verificarVehiculoEnCompra(String placa){
+        boolean accion = false;
+        for (Detalle_compra detalle_compra : listaDetallesCompra) {
+            if (detalle_compra.getVehiculo().getPlaca().equals(placa)) {
+                accion = true;
+                break;
+            }
         }
         return accion;
     }
@@ -198,6 +214,7 @@ public class Compra {
                 detalle_compra.getVehiculo().setEstadoDisponibilidad(Estado_disponibilidad.DISPONIBLE);
                 setTotalCompra(calcularTotal());
                 listaDetallesCompra.remove(detalle_compra);
+                accion = true;
                 break;
             }
         }

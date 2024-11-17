@@ -181,7 +181,7 @@ public class GestionComprasViewController {
      */
     @FXML
     void onOpenDetalleCompra() {
-        //app.openDetalleCompra(selectedCompra);
+        app.openDetalleCompra(selectedCompra);
     }
 
     /**

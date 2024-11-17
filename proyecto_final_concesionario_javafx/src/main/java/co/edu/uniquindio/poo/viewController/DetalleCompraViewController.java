@@ -4,21 +4,24 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
-import co.edu.uniquindio.poo.controller.GestionVehiculoController;
+import co.edu.uniquindio.poo.controller.DetalleCompraController;
 import co.edu.uniquindio.poo.model.Bus;
 import co.edu.uniquindio.poo.model.Camion;
 import co.edu.uniquindio.poo.model.Camioneta;
+import co.edu.uniquindio.poo.model.Compra;
 import co.edu.uniquindio.poo.model.Deportivo;
-import co.edu.uniquindio.poo.model.Empleado;
+import co.edu.uniquindio.poo.model.Detalle_compra;
 import co.edu.uniquindio.poo.model.Estado_vehiculo;
 import co.edu.uniquindio.poo.model.Motocicleta;
 import co.edu.uniquindio.poo.model.Pick_up;
 import co.edu.uniquindio.poo.model.Sedan;
+import co.edu.uniquindio.poo.model.Sede;
 import co.edu.uniquindio.poo.model.Tipo_transmision;
 import co.edu.uniquindio.poo.model.Tipo_uso;
 import co.edu.uniquindio.poo.model.Van;
 import co.edu.uniquindio.poo.model.Vehiculo;
-import co.edu.uniquindio.poo.model.Sede;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,12 +35,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class GestionVehiculoViewController {
+public class DetalleCompraViewController {
 
-    GestionVehiculoController gestionVehiculoController;
-    private Empleado empleado;
-    ObservableList<Vehiculo> listaVehiculos = FXCollections.observableArrayList();
-    Vehiculo selectedVehiculo;
+    DetalleCompraController detalleCompraController;
+    private Compra compra;
+    ObservableList<Detalle_compra> listaDetallesCompra = FXCollections.observableArrayList();
+    Detalle_compra selectedDetalleCompra;
 
     @FXML
     private App app;
@@ -58,7 +61,7 @@ public class GestionVehiculoViewController {
     private Label lb_modelo;
 
     @FXML
-    private TableColumn<Vehiculo, String> cl_placa;
+    private TableColumn<Detalle_compra, String> cl_placa;
 
     @FXML
     private CheckBox checkb_camara;
@@ -124,10 +127,10 @@ public class GestionVehiculoViewController {
     private TextField txt_cilindraje;
 
     @FXML
-    private Button bt_2;
+    private TextField txt_placa;
 
     @FXML
-    private TextField txt_placa;
+    private TableView<Detalle_compra> tbl_vehiculos;
 
     @FXML
     private ComboBox<Tipo_uso> cb_uso;
@@ -145,10 +148,7 @@ public class GestionVehiculoViewController {
     private Label lb_enchufable;
 
     @FXML
-    private TableColumn<Vehiculo, String> cl_uso;
-
-    @FXML
-    private TableColumn<Vehiculo, String> cl_estado;
+    private TableColumn<Detalle_compra, String> cl_estado;
 
     @FXML
     private TextField txt_cambios;
@@ -167,6 +167,9 @@ public class GestionVehiculoViewController {
 
     @FXML
     private Label lb_camion;
+
+    @FXML
+    private Label lb_tecnomecanica;
 
     @FXML
     private Label lb_aire;
@@ -190,6 +193,9 @@ public class GestionVehiculoViewController {
     private TextField txt_pasajeros;
 
     @FXML
+    private TableColumn<Detalle_compra, Integer> cl_modelo;
+
+    @FXML
     private Label lb_frenosaire;
 
     @FXML
@@ -211,13 +217,16 @@ public class GestionVehiculoViewController {
     private CheckBox checkb_asistente;
 
     @FXML
+    private TextField txt_precio;
+
+    @FXML
     private Label lb_marca;
 
     @FXML
     private TextField txt_autonomia;
 
     @FXML
-    private TableView<Vehiculo> tbl_vehiculos;
+    private CheckBox checkb_tecnomecanica;
 
     @FXML
     private Label lb_placa;
@@ -229,7 +238,7 @@ public class GestionVehiculoViewController {
     private TextField txt_cajacarga;
 
     @FXML
-    private TableColumn<Vehiculo, String> cl_disponibilidad;
+    private TableColumn<Detalle_compra, Double> cl_precio;
 
     @FXML
     private CheckBox checkb_enchufable;
@@ -262,6 +271,9 @@ public class GestionVehiculoViewController {
     private Label lb_camara;
 
     @FXML
+    private Label lb_precio;
+
+    @FXML
     private Label lb_abs;
 
     @FXML
@@ -291,46 +303,38 @@ public class GestionVehiculoViewController {
     }
 
     /**
-     * Metodo para establecer el empleado para este controlador
-     * @param empleado empleado a establecer
+     * Metodo para establecer la compra para este controlador
+     * @param compra Compra a establecer
      */
     @SuppressWarnings("exports")
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 
     /**
-     * Metodo para inicializar el GestionVehiculoViewController con el empleado administrado y luego inicializar el initView
-     * @param empleado Empleado administrado
+     * Metodo para inicializar el controller con la compra administrada, configura los comboBox y luego inicia el initView
+     * @param empleado
      */
     @SuppressWarnings("exports")
-    public void inicializarEmpleado(Empleado empleado) {
-        gestionVehiculoController = new GestionVehiculoController(empleado, App.concesionario);
+    public void inicializarController(Compra compra) {
+        detalleCompraController = new DetalleCompraController(compra, App.concesionario);
         initView();
     }
 
     /**
-     * Metodo para manejar el evento de agregar un vehiculo
+     * Metodo para manejar el evento de agregar un detalle de compra
      */
     @FXML
-    void onAgregarVehiculo() {
-        agregarVehiculo();
+    void onAgregarDetalleCompra() {
+        agregarDetalleCompra();
     }
 
     /**
-     * Metodo para manejar el evento de actualizar un vehiculo
+     * Metodo para manejar el evento de eliminar un detalle de compra
      */
     @FXML
-    void onActualizarVehiculo() {
-        actualizarVehiculo();
-    }
-
-    /**
-     * Metodo para manejar el evento de eliminar un vehiculo
-     */
-    @FXML
-    void onEliminarVehiculo() {
-        eliminarVehiculo();
+    void onEliminarDetalleCompra() {
+        eliminarDetalleCompra();
     }
 
     /**
@@ -348,16 +352,19 @@ public class GestionVehiculoViewController {
      */
     @FXML
     void onOpenEmpleado() {
-        app.openMenuEmpleado(empleado);
+        app.openGestionCompras(compra.getEmpleado());
     }
 
     /**
      * Metodo para mostrar la informacion de un vehiculo en los campos correspondientes de la tabla de vehiculos
      * @param vehiculo Vehiculo con la informacion que se busca mostrar
      */
-    private void mostrarInformacionVehiculo(Vehiculo vehiculo) {
-        if (vehiculo != null) {
+    private void mostrarInformacionDetalleCompra(Detalle_compra detalleCompra) {
+        if (detalleCompra != null && detalleCompra.getVehiculo() != null) {
+            Vehiculo vehiculo = detalleCompra.getVehiculo();
             mostrarInformacionPersonalizadaVehiculo(vehiculo);
+            txt_precio.setText(String.valueOf(detalleCompra.getSubtotal()));
+            checkb_tecnomecanica.setSelected(detalleCompra.isTecnomecanicaValida());
             txt_placa.setText(vehiculo.getPlaca());
             txt_marca.setText(vehiculo.getMarca());
             cb_estado.getSelectionModel().select(vehiculo.getEstadoVehiculo());
@@ -367,7 +374,6 @@ public class GestionVehiculoViewController {
             txt_cilindraje.setText(String.valueOf(vehiculo.getCilindraje()));
             cb_transmision.getSelectionModel().select(vehiculo.getTipoTransmision());
             cb_uso.getSelectionModel().select(vehiculo.getTipoUso());
-            txt_placa.setDisable(true);
             cb_vehiculo.setDisable(true);      
         }
     }
@@ -477,6 +483,15 @@ public class GestionVehiculoViewController {
     }
 
     /**
+     * Metodo para crear un detalle de compra
+     * @param vehiculoDado Vehiculo para el detalle de compra
+     * @return Detalle de compra creado
+     */
+    private Detalle_compra buildDetalleCompra(Vehiculo vehiculoDado){
+        return new Detalle_compra(vehiculoDado, Double.parseDouble(txt_precio.getText()), compra, checkb_tecnomecanica.isSelected());
+    }
+
+    /**
      * Metodo para crear un Vehiculo con los datos ingresados en los campos de texto
      * @return Vehiculo creado
      */
@@ -499,7 +514,7 @@ public class GestionVehiculoViewController {
         boolean colision = checkb_colision.isSelected();
         boolean frenosABS = checkb_abs.isSelected();
         boolean frenosAire = checkb_frenosaire.isSelected();
-        Sede sede = empleado.getSede();
+        Sede sede = compra.getEmpleado().getSede();
         if (tipoVehiculo.equals("Bus")) {
             return new Bus(txt_placa.getText(), txt_marca.getText(), estadoVehiculo, Integer.parseInt(txt_modelo.getText()), Integer.parseInt(txt_cambios.getText()), Double.parseDouble(txt_velocidad.getText()), Double.parseDouble(txt_cilindraje.getText()), tipoTransmision, tipoUso, enchufable, hibrido, Integer.parseInt(txt_pasajeros.getText()), Integer.parseInt(txt_puertas.getText()), Integer.parseInt(txt_bolsas.getText()), Integer.parseInt(txt_ejes.getText()), Integer.parseInt(txt_salidas.getText()), Double.parseDouble(txt_maletero.getText()), aireAcondicionado, camaraReversa, frenosABS, sede);
         }
@@ -530,13 +545,14 @@ public class GestionVehiculoViewController {
     }
 
     /**
-     * Metodo para agregar un vehiculo a la lista de vehiculos de la tabla
+     * Metodo para agregar un detalle de compra a la lista de detalles de compra de la tabla
      */
-    private void agregarVehiculo(){
+    private void agregarDetalleCompra(){
         if (verificarCasillasCorrectas() && verificarCasillasLlenas()) {
             Vehiculo vehiculo = buildVehiculo();
-            if (gestionVehiculoController.crearVehiculo(vehiculo)) {
-                listaVehiculos.add(vehiculo);
+            Detalle_compra detalleCompra = buildDetalleCompra(vehiculo);
+            if (detalleCompraController.crearDetalleCompra(detalleCompra)) {
+                listaDetallesCompra.add(detalleCompra);
                 limpiarSeleccion();
                 limpiarCamposVehiculos();
                 cb_vehiculo.getSelectionModel().clearSelection();
@@ -545,25 +561,11 @@ public class GestionVehiculoViewController {
     }
 
     /**
-     * Metodo para actualizar la informacion del vehiculo seleccionado
+     * Metodo para eliminar un detalle de compra de la lista de detalles de compra de la compra segun el codigo proporcionado
      */
-    private void actualizarVehiculo(){
-        if (verificarCasillasCorrectas() && verificarCasillasLlenas()) {
-            if (selectedVehiculo != null && gestionVehiculoController.actualizarVehiculo(selectedVehiculo.getPlaca(), buildVehiculo())) {
-                limpiarSeleccion();
-                limpiarCamposVehiculos();
-                cb_vehiculo.getSelectionModel().clearSelection();
-                app.openGestionVehiculos(empleado);
-            }
-        }
-    }
-
-    /**
-     * Metodo para eliminar un vehiculo de la lista de vehiculos de la sede segun la indentificacion proporcionada
-     */
-    private void eliminarVehiculo(){
-        if (gestionVehiculoController.eliminarVehiculo(txt_placa.getText())) {
-            listaVehiculos.remove(selectedVehiculo);
+    private void eliminarDetalleCompra(){
+        if (detalleCompraController.eliminarDetalleCompra(txt_placa.getText())) {
+            listaDetallesCompra.remove(selectedDetalleCompra);
             limpiarSeleccion();
             limpiarCamposVehiculos();
             cb_vehiculo.getSelectionModel().clearSelection();
@@ -571,10 +573,10 @@ public class GestionVehiculoViewController {
     }
 
     /**
-     * Metodo para obtener la lista de vehiculos de la sede del empleado y asignarla a la lista de vehiculos del controlador
+     * Metodo para obtener la lista de detalles de compra de la compra y asignarla a la lista de detalles de compra del controlador
      */
-    private void obtenerVehiculos(){
-        listaVehiculos.addAll(gestionVehiculoController.obtenerListaVehiculos());
+    private void obtenerDetallesCompra(){
+        listaDetallesCompra.addAll(detalleCompraController.obtenerListaDetallesCompra());
     }
 
     /**
@@ -605,7 +607,7 @@ public class GestionVehiculoViewController {
     private boolean verificarCasillasCorrectas(){
         String tipoVehiculo = cb_vehiculo.getSelectionModel().getSelectedItem();
         boolean decision = false;
-        if (esEntero(txt_modelo.getText()) && esEntero(txt_cambios.getText()) && esDouble(txt_velocidad.getText()) && esDouble(txt_cilindraje.getText()) && tipoVehiculo != null) {
+        if (esEntero(txt_modelo.getText()) && esEntero(txt_cambios.getText()) && esDouble(txt_velocidad.getText()) && esDouble(txt_cilindraje.getText()) && tipoVehiculo != null && esDouble(txt_precio.getText())) {
             if (tipoVehiculo.equals("Bus")) {
                 if (esEntero(txt_pasajeros.getText()) && esEntero(txt_puertas.getText()) && esEntero(txt_bolsas.getText()) && esEntero(txt_ejes.getText()) && esEntero(txt_salidas.getText()) && esDouble(txt_maletero.getText())) {
                     decision = true;
@@ -653,29 +655,29 @@ public class GestionVehiculoViewController {
      */
     private void initView() {
         initDataBinding();
-        obtenerVehiculos();
+        obtenerDetallesCompra();
         tbl_vehiculos.getItems().clear();
-        tbl_vehiculos.setItems(listaVehiculos);
+        tbl_vehiculos.setItems(listaDetallesCompra);
         listenerSelection();
     }
 
     /**
-     * Metodo para configurar los tipos de datos de cada columna de la tabla vehiculos del controlador
+     * Metodo para configurar los tipos de datos de cada columna de la tabla detalles de compra del controlador
      */
     private void initDataBinding() {
-        cl_placa.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPlaca()));
-        cl_estado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoVehiculo().name()));
-        cl_uso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoUso().name()));
-        cl_disponibilidad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoDisponibilidad().name()));
+        cl_placa.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVehiculo().getPlaca()));
+        cl_modelo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getVehiculo().getModelo()).asObject());
+        cl_estado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getVehiculo().getEstadoVehiculo().name()));
+        cl_precio.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getSubtotal()).asObject());
     }
 
     /**
-     * Metodo para configurar la seleccion de un elemento en la tabla de vehiculos
+     * Metodo para configurar la seleccion de un elemento en la tabla de detalles de compra
      */
     private void listenerSelection() {
         tbl_vehiculos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            selectedVehiculo = newSelection;
-            mostrarInformacionVehiculo(selectedVehiculo);
+            selectedDetalleCompra = newSelection;
+            mostrarInformacionDetalleCompra(selectedDetalleCompra);
         });
     }
 
@@ -684,7 +686,6 @@ public class GestionVehiculoViewController {
      */
     private void limpiarSeleccion() {
         cb_vehiculo.setDisable(false);
-        txt_placa.setDisable(false);
         tbl_vehiculos.getSelectionModel().clearSelection();
         lb_placa.setVisible(false);
         txt_placa.setVisible(false);
@@ -756,6 +757,8 @@ public class GestionVehiculoViewController {
      * Metodo para limpiar los campos de texto relacionados con la informacion de los vehiculos
      */
     private void limpiarCamposVehiculos() {
+        checkb_tecnomecanica.setSelected(false);
+        txt_precio.clear();
         txt_placa.clear();
         txt_marca.clear();
         cb_estado.getSelectionModel().clearSelection();
@@ -1129,83 +1132,86 @@ public class GestionVehiculoViewController {
         cb_vehiculo.getItems().addAll("Bus", "Camion", "Camioneta", "Deportivo", "Motocicleta", "Pick up", "Sedan", "Van");
         cb_vehiculo.setOnAction(event -> manejarSeleccionTipo());
         manejarSeleccionTipo();
-        assert txt_marca != null : "fx:id=\"txt_marca\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_vehiculo != null : "fx:id=\"lb_vehiculo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_modelo != null : "fx:id=\"lb_modelo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cl_placa != null : "fx:id=\"cl_placa\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_camara != null : "fx:id=\"checkb_camara\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_modelo != null : "fx:id=\"txt_modelo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_cambios != null : "fx:id=\"lb_cambios\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_crucero != null : "fx:id=\"checkb_crucero\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_maletero != null : "fx:id=\"lb_maletero\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_uso != null : "fx:id=\"lb_uso\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_autonomia != null : "fx:id=\"lb_autonomia\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_aire != null : "fx:id=\"checkb_aire\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_1 != null : "fx:id=\"lb_1\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_cilindraje != null : "fx:id=\"lb_cilindraje\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_frenosaire != null : "fx:id=\"checkb_frenosaire\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_transmision != null : "fx:id=\"lb_transmision\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_bolsas != null : "fx:id=\"lb_bolsas\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert bt_5 != null : "fx:id=\"bt_5\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert bt_3 != null : "fx:id=\"bt_3\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_bolsas != null : "fx:id=\"txt_bolsas\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert bt_4 != null : "fx:id=\"bt_4\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_estado != null : "fx:id=\"lb_estado\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_salidas != null : "fx:id=\"txt_salidas\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_cilindraje != null : "fx:id=\"txt_cilindraje\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert bt_2 != null : "fx:id=\"bt_2\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_placa != null : "fx:id=\"txt_placa\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cb_uso != null : "fx:id=\"cb_uso\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_4x4 != null : "fx:id=\"checkb_4x4\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_cajacarga != null : "fx:id=\"lb_cajacarga\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_enchufable != null : "fx:id=\"lb_enchufable\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cl_uso != null : "fx:id=\"cl_uso\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cl_estado != null : "fx:id=\"cl_estado\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_cambios != null : "fx:id=\"txt_cambios\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_abs != null : "fx:id=\"checkb_abs\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_velocidad != null : "fx:id=\"txt_velocidad\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_hibrido != null : "fx:id=\"lb_hibrido\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cb_estado != null : "fx:id=\"cb_estado\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_camion != null : "fx:id=\"lb_camion\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_aire != null : "fx:id=\"lb_aire\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_colision != null : "fx:id=\"checkb_colision\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_tiempocarga != null : "fx:id=\"lb_tiempocarga\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_camion != null : "fx:id=\"txt_camion\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cb_vehiculo != null : "fx:id=\"cb_vehiculo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_puertas != null : "fx:id=\"lb_puertas\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_pasajeros != null : "fx:id=\"txt_pasajeros\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_frenosaire != null : "fx:id=\"lb_frenosaire\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_tiempocarga != null : "fx:id=\"txt_tiempocarga\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cb_transmision != null : "fx:id=\"cb_transmision\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_ejes != null : "fx:id=\"txt_ejes\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_crucero != null : "fx:id=\"lb_crucero\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_hibrido != null : "fx:id=\"checkb_hibrido\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_asistente != null : "fx:id=\"checkb_asistente\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_marca != null : "fx:id=\"lb_marca\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_autonomia != null : "fx:id=\"txt_autonomia\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert tbl_vehiculos != null : "fx:id=\"tbl_vehiculos\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_placa != null : "fx:id=\"lb_placa\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_puertas != null : "fx:id=\"txt_puertas\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_cajacarga != null : "fx:id=\"txt_cajacarga\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert cl_disponibilidad != null : "fx:id=\"cl_disponibilidad\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_enchufable != null : "fx:id=\"checkb_enchufable\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_maletero != null : "fx:id=\"txt_maletero\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_colision != null : "fx:id=\"lb_colision\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_trafico != null : "fx:id=\"lb_trafico\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_pasajeros != null : "fx:id=\"lb_pasajeros\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_hp != null : "fx:id=\"lb_hp\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_tiempo != null : "fx:id=\"lb_tiempo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert checkb_trafico != null : "fx:id=\"checkb_trafico\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_salidas != null : "fx:id=\"lb_salidas\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_camara != null : "fx:id=\"lb_camara\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_abs != null : "fx:id=\"lb_abs\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_hp != null : "fx:id=\"txt_hp\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_velocidad != null : "fx:id=\"lb_velocidad\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert txt_tiempo != null : "fx:id=\"txt_tiempo\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_ejes != null : "fx:id=\"lb_ejes\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_asistente != null : "fx:id=\"lb_asistente\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
-        assert lb_4x4 != null : "fx:id=\"lb_4x4\" was not injected: check your FXML file 'gestionVehiculos.fxml'.";
+        assert txt_marca != null : "fx:id=\"txt_marca\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_vehiculo != null : "fx:id=\"lb_vehiculo\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_modelo != null : "fx:id=\"lb_modelo\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cl_placa != null : "fx:id=\"cl_placa\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_camara != null : "fx:id=\"checkb_camara\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_modelo != null : "fx:id=\"txt_modelo\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_cambios != null : "fx:id=\"lb_cambios\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_crucero != null : "fx:id=\"checkb_crucero\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_maletero != null : "fx:id=\"lb_maletero\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_uso != null : "fx:id=\"lb_uso\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_autonomia != null : "fx:id=\"lb_autonomia\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_aire != null : "fx:id=\"checkb_aire\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_1 != null : "fx:id=\"lb_1\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_cilindraje != null : "fx:id=\"lb_cilindraje\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_frenosaire != null : "fx:id=\"checkb_frenosaire\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_transmision != null : "fx:id=\"lb_transmision\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_bolsas != null : "fx:id=\"lb_bolsas\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert bt_5 != null : "fx:id=\"bt_5\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert bt_3 != null : "fx:id=\"bt_3\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_bolsas != null : "fx:id=\"txt_bolsas\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert bt_4 != null : "fx:id=\"bt_4\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_estado != null : "fx:id=\"lb_estado\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_salidas != null : "fx:id=\"txt_salidas\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_cilindraje != null : "fx:id=\"txt_cilindraje\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_placa != null : "fx:id=\"txt_placa\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert tbl_vehiculos != null : "fx:id=\"tbl_vehiculos\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cb_uso != null : "fx:id=\"cb_uso\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_4x4 != null : "fx:id=\"checkb_4x4\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_cajacarga != null : "fx:id=\"lb_cajacarga\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_enchufable != null : "fx:id=\"lb_enchufable\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cl_estado != null : "fx:id=\"cl_estado\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_cambios != null : "fx:id=\"txt_cambios\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_abs != null : "fx:id=\"checkb_abs\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_velocidad != null : "fx:id=\"txt_velocidad\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_hibrido != null : "fx:id=\"lb_hibrido\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cb_estado != null : "fx:id=\"cb_estado\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_camion != null : "fx:id=\"lb_camion\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_tecnomecanica != null : "fx:id=\"lb_tecnomecanica\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_aire != null : "fx:id=\"lb_aire\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_colision != null : "fx:id=\"checkb_colision\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_tiempocarga != null : "fx:id=\"lb_tiempocarga\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_camion != null : "fx:id=\"txt_camion\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cb_vehiculo != null : "fx:id=\"cb_vehiculo\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_puertas != null : "fx:id=\"lb_puertas\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_pasajeros != null : "fx:id=\"txt_pasajeros\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cl_modelo != null : "fx:id=\"cl_modelo\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_frenosaire != null : "fx:id=\"lb_frenosaire\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_tiempocarga != null : "fx:id=\"txt_tiempocarga\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cb_transmision != null : "fx:id=\"cb_transmision\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_ejes != null : "fx:id=\"txt_ejes\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_crucero != null : "fx:id=\"lb_crucero\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_hibrido != null : "fx:id=\"checkb_hibrido\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_asistente != null : "fx:id=\"checkb_asistente\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_precio != null : "fx:id=\"txt_precio\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_marca != null : "fx:id=\"lb_marca\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_autonomia != null : "fx:id=\"txt_autonomia\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_tecnomecanica != null : "fx:id=\"checkb_tecnomecanica\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_placa != null : "fx:id=\"lb_placa\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_puertas != null : "fx:id=\"txt_puertas\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_cajacarga != null : "fx:id=\"txt_cajacarga\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert cl_precio != null : "fx:id=\"cl_precio\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_enchufable != null : "fx:id=\"checkb_enchufable\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_maletero != null : "fx:id=\"txt_maletero\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_colision != null : "fx:id=\"lb_colision\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_trafico != null : "fx:id=\"lb_trafico\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_pasajeros != null : "fx:id=\"lb_pasajeros\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_hp != null : "fx:id=\"lb_hp\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_tiempo != null : "fx:id=\"lb_tiempo\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert checkb_trafico != null : "fx:id=\"checkb_trafico\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_salidas != null : "fx:id=\"lb_salidas\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_camara != null : "fx:id=\"lb_camara\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_precio != null : "fx:id=\"lb_precio\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_abs != null : "fx:id=\"lb_abs\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_hp != null : "fx:id=\"txt_hp\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_velocidad != null : "fx:id=\"lb_velocidad\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert txt_tiempo != null : "fx:id=\"txt_tiempo\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_ejes != null : "fx:id=\"lb_ejes\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_asistente != null : "fx:id=\"lb_asistente\" was not injected: check your FXML file 'detalleCompra.fxml'.";
+        assert lb_4x4 != null : "fx:id=\"lb_4x4\" was not injected: check your FXML file 'detalleCompra.fxml'.";
     }
 }
