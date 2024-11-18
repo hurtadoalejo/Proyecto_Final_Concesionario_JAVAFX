@@ -335,24 +335,7 @@ public class GestionAdministradoresViewController {
     }
 
     /**
-     * Metodo para saber si un String es un dato de tipo int
-     * @param texto String a verificar
-     * @return Booleano sobre si el String es int o no
-     */
-    private boolean esEntero(String texto){
-        if (texto == null || texto.isEmpty()) {
-            return false;
-        }
-        try {
-            Integer.parseInt(texto);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Metodo para saber si un String es un dato de tipo double
+     * Metodo para saber si un String es un dato de tipo double positivo y diferente de 0
      * @param texto String a verificar
      * @return Booleano sobre si el String es double o no
      */
@@ -361,8 +344,25 @@ public class GestionAdministradoresViewController {
             return false;
         }
         try {
-            Double.parseDouble(texto);
-            return true;
+            double numero = Double.parseDouble(texto);
+            return numero > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Metodo para saber si un String es un dato de tipo int positivo y diferente de 0
+     * @param texto String a verificar
+     * @return Booleano sobre si el String es int o no
+     */
+    private boolean esEntero(String texto){
+        if (texto == null || texto.isEmpty()) {
+            return false;
+        }
+        try {
+            int numero = Integer.parseInt(texto);
+            return numero > 0;
         } catch (NumberFormatException e) {
             return false;
         }

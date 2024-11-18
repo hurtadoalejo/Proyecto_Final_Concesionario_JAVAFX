@@ -362,7 +362,7 @@ public class GestionComprasViewController {
     }
 
     /**
-     * Metodo para saber si un String es un dato de tipo int
+     * Metodo para saber si un String es un dato de tipo int positivo y diferente de 0
      * @param texto String a verificar
      * @return Booleano sobre si el String es int o no
      */
@@ -371,8 +371,8 @@ public class GestionComprasViewController {
             return false;
         }
         try {
-            Integer.parseInt(texto);
-            return true;
+            int numero = Integer.parseInt(texto);
+            return numero > 0;
         } catch (NumberFormatException e) {
             return false;
         }
