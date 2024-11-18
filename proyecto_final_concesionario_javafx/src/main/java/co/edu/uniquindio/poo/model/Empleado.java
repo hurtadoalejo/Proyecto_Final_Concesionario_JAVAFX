@@ -553,7 +553,6 @@ public class Empleado extends Persona implements ICredencialAcceso, IVerificarPe
                 if (alquiler.getCodigo() == codigo && alquilerNuevo.getCodigo() == codigo && alquiler.getEstadoAlquiler().equals(Estado_alquiler.PENDIENTE)) {
                     accion = true;
                     alquiler.setCliente(alquilerNuevo.getCliente());
-                    alquiler.setVehiculo(alquilerNuevo.getVehiculo());
                     alquiler.setPrecioPorDia(alquilerNuevo.getPrecioPorDia());
                     alquiler.setFechaAlquiler(alquilerNuevo.getFechaAlquiler());
                 }
