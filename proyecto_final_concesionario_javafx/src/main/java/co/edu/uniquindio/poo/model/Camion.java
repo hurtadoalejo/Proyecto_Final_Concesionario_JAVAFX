@@ -33,6 +33,7 @@ public class Camion extends Vehiculo_diesel{
         this.numEjes = numEjes;
         this.capacidadCajaCarga = capacidadCajaCarga;
         this.tipoCamion = tipoCamion;
+        setTipoVehiculo(Tipo_vehiculo.CAMION);
     }
 
     /**

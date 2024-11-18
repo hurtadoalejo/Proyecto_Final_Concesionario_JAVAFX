@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.CatalogoController;
 import co.edu.uniquindio.poo.model.Vehiculo;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,13 +41,16 @@ public class CatalogoViewController {
     private Pane pane_1;
 
     @FXML
-    private TableColumn<Vehiculo, String> cl_placa;
+    private TableColumn<Vehiculo, String> cl_marca;
+
+    @FXML
+    private TableColumn<Vehiculo, String> cl_vehiculo;
 
     @FXML
     private TableColumn<Vehiculo, String> cl_uso;
 
     @FXML
-    private TableColumn<Vehiculo, String> cl_estado;
+    private TableColumn<Vehiculo, Integer> cl_modelo;
 
     @FXML
     private Label lbl_1;
@@ -97,8 +101,9 @@ public class CatalogoViewController {
      * Metodo para configurar los tipos de datos de cada columna de la tabla vehiculos del controlador
      */
     private void initDataBinding() {
-        cl_placa.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPlaca()));
-        cl_estado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoVehiculo().name()));
+        cl_vehiculo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoVehiculo().name()));
+        cl_modelo.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getModelo()).asObject());
+        cl_marca.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMarca()));
         cl_uso.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoUso().name()));
         cl_disponibilidad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEstadoDisponibilidad().name()));
         cl_ciudad.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSede().getCiudad().name()));
@@ -112,13 +117,13 @@ public class CatalogoViewController {
         assert tbl_vehiculos != null : "fx:id=\"tbl_vehiculos\" was not injected: check your FXML file 'catalogo.fxml'.";
         assert cl_disponibilidad != null : "fx:id=\"cl_disponibilidad\" was not injected: check your FXML file 'catalogo.fxml'.";
         assert pane_1 != null : "fx:id=\"pane_1\" was not injected: check your FXML file 'catalogo.fxml'.";
-        assert cl_placa != null : "fx:id=\"cl_placa\" was not injected: check your FXML file 'catalogo.fxml'.";
+        assert cl_marca != null : "fx:id=\"cl_marca\" was not injected: check your FXML file 'catalogo.fxml'.";
         assert cl_uso != null : "fx:id=\"cl_uso\" was not injected: check your FXML file 'catalogo.fxml'.";
-        assert cl_estado != null : "fx:id=\"cl_estado\" was not injected: check your FXML file 'catalogo.fxml'.";
         assert lbl_1 != null : "fx:id=\"lbl_1\" was not injected: check your FXML file 'catalogo.fxml'.";
         assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'catalogo.fxml'.";
+        assert cl_vehiculo != null : "fx:id=\"cl_vehiculo\" was not injected: check your FXML file 'catalogo.fxml'.";
+        assert cl_modelo != null : "fx:id=\"cl_modelo\" was not injected: check your FXML file 'catalogo.fxml'.";
         assert cl_ciudad != null : "fx:id=\"cl_ciudad\" was not injected: check your FXML file 'catalogo.fxml'.";
         assert cl_direccion != null : "fx:id=\"cl_direccion\" was not injected: check your FXML file 'catalogo.fxml'.";
-
     }
 }

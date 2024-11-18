@@ -34,6 +34,7 @@ public class Van extends Vehiculo_diesel{
         this.tieneAireAcondicionado = tieneAireAcondicionado;
         this.tieneCamaraReversa = tieneCamaraReversa;
         this.tieneABS = tieneABS;
+        setTipoVehiculo(Tipo_vehiculo.VAN);
     }
 
     /**

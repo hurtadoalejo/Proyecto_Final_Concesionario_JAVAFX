@@ -17,5 +17,6 @@ public class Motocicleta extends Vehiculo_gasolina{
      */
     public Motocicleta(String placa, String marca, Estado_vehiculo estadoVehiculo, int modelo, int cantidadCambios, double velocidadMax, double cilindraje, Tipo_transmision tipoTransmision, Tipo_uso tipoUso, Sede sede) {
         super(placa, marca, estadoVehiculo, modelo, cantidadCambios, velocidadMax, cilindraje, tipoTransmision, tipoUso, sede);
+        setTipoVehiculo(Tipo_vehiculo.MOTOCICLETA);
     }
 }

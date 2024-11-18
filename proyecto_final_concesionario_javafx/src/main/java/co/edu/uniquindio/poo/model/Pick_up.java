@@ -38,6 +38,7 @@ public class Pick_up extends Vehiculo_electrico{
         this.tieneCamaraReversa = tieneCamaraReversa;
         this.tieneABS = tieneABS;
         this.esCuatroXCuatro = esCuatroXCuatro;
+        setTipoVehiculo(Tipo_vehiculo.PICK_UP);
     }
 
     /**

@@ -40,6 +40,7 @@ public class Bus extends Vehiculo_hibrido{
         this.tieneAireAcondicionado = tieneAireAcondicionado;
         this.tieneCamaraReversa = tieneCamaraReversa;
         this.tieneABS = tieneABS;
+        setTipoVehiculo(Tipo_vehiculo.BUS);
     }
 
     /**

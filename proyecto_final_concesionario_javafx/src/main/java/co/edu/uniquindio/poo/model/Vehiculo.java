@@ -9,6 +9,7 @@ public class Vehiculo {
     private Tipo_uso tipoUso;
     private Estado_disponibilidad estadoDisponibilidad;
     private Sede sede;
+    private Tipo_vehiculo tipoVehiculo;
 
     /**
      * Metodo constructor de la clase Vehiculo
@@ -108,11 +109,18 @@ public class Vehiculo {
         return estadoDisponibilidad;
     }
     /**
-     * Metodo para obtener la sede del vehiculo a crear
+     * Metodo para obtener la sede del vehiculo
      * @return Sede del vehiculo
      */
     public Sede getSede() {
         return sede;
+    }
+    /**
+     * Metodo para obtener el tipo vehiculo
+     * @return Tipo de vehiculo
+     */
+    public Tipo_vehiculo getTipoVehiculo() {
+        return tipoVehiculo;
     }
 
     /**
@@ -192,5 +200,11 @@ public class Vehiculo {
     public void setSede(Sede sede) {
         this.sede = sede;
     }
-
+    /**
+     * Metodo para modificar el tipo de vehiculo
+     * @param tipoVehiculo Nuevo tipo de vehiculo
+     */
+    public void setTipoVehiculo(Tipo_vehiculo tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
+    }
 }

@@ -19,12 +19,13 @@
       </Button>
       <TableView fx:id="tbl_vehiculos" layoutX="38.0" layoutY="134.0" prefHeight="360.0" prefWidth="1121.0" style="-fx-border-color: #e28743; -fx-border-width: 2; -fx-font-size: 15px;">
          <columns>
-            <TableColumn fx:id="cl_placa" prefWidth="157.0" text="Placa" />
-            <TableColumn fx:id="cl_estado" prefWidth="192.0" text="Estado Vehiculo" />
-            <TableColumn fx:id="cl_uso" prefWidth="171.0" text="Tipo Uso" />
-            <TableColumn fx:id="cl_disponibilidad" prefWidth="236.0" text="Estado disponibilidad" />
-            <TableColumn fx:id="cl_ciudad" prefWidth="162.0" text="Ciudad" />
-            <TableColumn fx:id="cl_direccion" prefWidth="194.0" text="Dirección" />
+            <TableColumn fx:id="cl_vehiculo" prefWidth="139.0" text="Vehículo" />
+            <TableColumn fx:id="cl_modelo" prefWidth="119.0" text="Modelo" />
+            <TableColumn fx:id="cl_marca" prefWidth="148.0" text="Marca" />
+            <TableColumn fx:id="cl_uso" prefWidth="136.0" text="Tipo Uso" />
+            <TableColumn fx:id="cl_disponibilidad" prefWidth="203.0" text="Estado disponibilidad" />
+            <TableColumn fx:id="cl_ciudad" prefWidth="140.0" text="Ciudad" />
+            <TableColumn fx:id="cl_direccion" prefWidth="233.0" text="Dirección" />
          </columns>
       </TableView>
    </children>

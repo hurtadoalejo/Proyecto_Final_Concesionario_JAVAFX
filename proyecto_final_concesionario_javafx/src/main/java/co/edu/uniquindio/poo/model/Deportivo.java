@@ -29,6 +29,7 @@ public class Deportivo extends Vehiculo_gasolina{
         this.numBolsasAire = numBolsasAire;
         this.numHP = numHP;
         this.tiempoCienKm = tiempoCienKm;
+        setTipoVehiculo(Tipo_vehiculo.DEPORTIVO);
     }
 
     /**

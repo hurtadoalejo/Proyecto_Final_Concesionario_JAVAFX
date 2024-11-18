@@ -44,6 +44,7 @@ public class Sedan extends Vehiculo_hibrido{
         this.tieneSensorColision = tieneSensorColision;
         this.tieneSensorTraficoCruzado = tieneSensorTraficoCruzado;
         this.tieneAsistentePermanenciaCarril = tieneAsistentePermanenciaCarril;
+        setTipoVehiculo(Tipo_vehiculo.SEDAN);
     }
 
     /**

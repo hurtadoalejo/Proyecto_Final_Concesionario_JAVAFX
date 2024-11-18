@@ -46,6 +46,7 @@ public class Camioneta extends Vehiculo_electrico{
         this.tieneSensorTraficoCruzado = tieneSensorTraficoCruzado;
         this.tieneAsistentePermanenciaCarril = tieneAsistentePermanenciaCarril;
         this.esCuatroXCuatro = esCuatroXCuatro;
+        setTipoVehiculo(Tipo_vehiculo.CAMIONETA);
     }
     
     /**
