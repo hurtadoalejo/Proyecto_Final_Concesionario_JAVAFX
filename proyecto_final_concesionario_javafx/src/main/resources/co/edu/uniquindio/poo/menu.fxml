@@ -7,17 +7,17 @@
 
 <Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.MenuViewController">
    <children>
-      <Button fx:id="bt_1" layoutX="169.0" layoutY="340.0" mnemonicParsing="false" onAction="#onOpenIngresarAdministrador" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743;             -fx-border-width: 2;" text="Administrador" textFill="#e28743">
+      <Button fx:id="bt_1" layoutX="169.0" layoutY="351.0" mnemonicParsing="false" onAction="#onOpenIngresarAdministrador" style="-fx-background-color: #39241B; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #e28743;             -fx-border-width: 2;" text="Administrador" textFill="#e28743">
          <font>
             <Font name="Verdana" size="48.0" />
          </font>
       </Button>
-      <Button fx:id="bt_2" layoutX="446.0" layoutY="224.0" mnemonicParsing="false" onAction="#onOpenIngresarEmpleado" style="-fx-background-color: #39241B;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="Empleado" textFill="#e28743">
+      <Button fx:id="bt_2" layoutX="220.0" layoutY="216.0" mnemonicParsing="false" onAction="#onOpenIngresarEmpleado" style="-fx-background-color: #39241B;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="Empleado" textFill="#e28743">
          <font>
             <Font name="Verdana" size="48.0" />
          </font>
       </Button>
-      <Button fx:id="bt_3" layoutX="624.0" layoutY="340.0" mnemonicParsing="false" onAction="#onOpenIngresarConcesionario" style="-fx-background-color: #39241B;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="Concesionario" textFill="#e28743">
+      <Button fx:id="bt_3" layoutX="624.0" layoutY="351.0" mnemonicParsing="false" onAction="#onOpenIngresarConcesionario" style="-fx-background-color: #39241B;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="Concesionario" textFill="#e28743">
          <font>
             <Font name="Verdana" size="48.0" />
          </font>
@@ -33,6 +33,11 @@
          </font>
       </Label>
       <Button fx:id="bt_4" layoutX="321.0" layoutY="508.0" mnemonicParsing="false" onAction="#cerrarPrograma" style="-fx-background-color: #1A0E09;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="CERRAR PROGRAMA" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Button>
+      <Button fx:id="bt_4" layoutX="673.0" layoutY="216.0" mnemonicParsing="false" onAction="#onOpenCatalogo" style="-fx-background-color: #39241B;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="Catálogo" textFill="#e28743">
          <font>
             <Font name="Verdana" size="48.0" />
          </font>

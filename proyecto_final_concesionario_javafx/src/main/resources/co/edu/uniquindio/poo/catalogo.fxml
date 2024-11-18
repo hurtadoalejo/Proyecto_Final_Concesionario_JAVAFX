@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="pane_1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1200.0" style="-fx-background-color: #21130d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.CatalogoViewController">
+   <children>
+      <Label fx:id="lbl_1" layoutX="493.0" layoutY="30.0" text="Catálogo" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="bt_1" layoutX="525.0" layoutY="526.0" mnemonicParsing="false" onAction="#onOpenMenu" style="-fx-background-color: #1A0E09;                 -fx-background-radius: 20;                 -fx-border-radius: 20;                 -fx-border-color: #e28743;                 -fx-border-width: 2;" text="Menú" textFill="#e28743">
+         <font>
+            <Font name="Verdana" size="36.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tbl_vehiculos" layoutX="38.0" layoutY="134.0" prefHeight="360.0" prefWidth="1121.0" style="-fx-border-color: #e28743; -fx-border-width: 2; -fx-font-size: 15px;">
+         <columns>
+            <TableColumn fx:id="cl_placa" prefWidth="157.0" text="Placa" />
+            <TableColumn fx:id="cl_estado" prefWidth="192.0" text="Estado Vehiculo" />
+            <TableColumn fx:id="cl_uso" prefWidth="171.0" text="Tipo Uso" />
+            <TableColumn fx:id="cl_disponibilidad" prefWidth="236.0" text="Estado disponibilidad" />
+            <TableColumn fx:id="cl_ciudad" prefWidth="162.0" text="Ciudad" />
+            <TableColumn fx:id="cl_direccion" prefWidth="194.0" text="Dirección" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>

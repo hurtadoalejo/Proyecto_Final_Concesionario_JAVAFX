@@ -38,6 +38,9 @@ public class MenuViewController {
     private Label lbl_2;
 
     @FXML
+    private Button bt_4;
+
+    @FXML
     private Button bt_1;
 
     @FXML
@@ -93,6 +96,14 @@ public class MenuViewController {
     }
 
     /**
+     * Metodo para inicializar la interfaz de catalogo
+     */
+    @FXML
+    void onOpenCatalogo() {
+        app.openCatalogo();
+    }
+
+    /**
      * Metodo para inicializar el controlador despues de que su archivo FXML haya sido cargado
      */
     @FXML
@@ -101,8 +112,8 @@ public class MenuViewController {
         assert bt_3 != null : "fx:id=\"bt_3\" was not injected: check your FXML file 'menu.fxml'.";
         assert lbl_1 != null : "fx:id=\"lbl_1\" was not injected: check your FXML file 'menu.fxml'.";
         assert lbl_2 != null : "fx:id=\"lbl_2\" was not injected: check your FXML file 'menu.fxml'.";
+        assert bt_4 != null : "fx:id=\"bt_4\" was not injected: check your FXML file 'menu.fxml'.";
         assert bt_1 != null : "fx:id=\"bt_1\" was not injected: check your FXML file 'menu.fxml'.";
         assert bt_2 != null : "fx:id=\"bt_2\" was not injected: check your FXML file 'menu.fxml'.";
-
     }
 }
